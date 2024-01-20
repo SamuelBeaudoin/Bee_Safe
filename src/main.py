@@ -18,7 +18,7 @@ mapbox_access_token = 'pk.eyJ1IjoidHV0cmUiLCJhIjoiY2xybWRicGhyMHBiaDJrb3I3ZXFocT
 data = data_merging.merge_data()
   
 # Function to convert coordinates to hexagons
-def lat_lng_to_hexagon(latitude, longitude, resolution=9):
+def lat_lng_to_hexagon(latitude, longitude, resolution=10):
     return h3.geo_to_h3(latitude, longitude, resolution)
 
 # Apply this function to create a hexagon ID for each point
@@ -85,7 +85,7 @@ def update_map(current_lat, current_lon, dest_lat, dest_lon):
     input_values['dest_lon'] = dest_lon
     # Update the map based on user input
     fig = px.choropleth_mapbox(hexagon_average_cost, geojson=geojson_hexagons, locations='hex_id', color='average_cost',
-                                color_continuous_scale="Viridis", mapbox_style="mapbox://styles/mapbox/streets-v11",
+                                color_continuous_scale="Icefire", mapbox_style="mapbox://styles/mapbox/streets-v11",
                                 zoom=10, center={"lat": current_lat, "lon": current_lon},
                                 opacity=0.5)
 
@@ -138,6 +138,28 @@ def update_map(current_lat, current_lon, dest_lat, dest_lon):
 
     # Get the center of each hexagon in the path
     path_centers = [h3.h3_to_geo(hex_id) for hex_id in path]
+
+    # Update the map's center and zoom to focus on the path
+    if path_centers:
+        # Calculate the average latitude and longitude of the path for centering
+        avg_lat = sum(lat for lat, lon in path_centers) / len(path_centers)
+        avg_lon = sum(lon for lat, lon in path_centers) / len(path_centers)
+        center = {"lat": avg_lat, "lon": avg_lon}
+
+        # Adjust the zoom level based on the distance between the points
+        # You can fine-tune the zoom level based on your specific requirements
+        distance = h3.point_dist((current_lat, current_lon), (dest_lat, dest_lon), unit='m')
+        if distance < 1000:  # Less than 1 km
+            zoom = 14
+        elif distance < 5000:  # Less than 5 km
+            zoom = 12
+        else:
+            zoom = 10
+    else:
+        center = {"lat": current_lat, "lon": current_lon}
+        zoom = 10
+
+    fig.update_layout(mapbox={"center": center, "zoom": zoom})
 
     # Add the path as a line on the map
     path_lon = [lon for lat, lon in path_centers]
