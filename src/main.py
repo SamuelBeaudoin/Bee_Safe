@@ -9,11 +9,6 @@ import h3
 import folium
 import geojson
 
-def lat_lon_to_h3(row):
-    # Convert latitude and longitude to H3 hexagon ID
-    hex_id = h3.geo_to_h3(row['Latitude'], row['Longitude'], resolution=8)  # You can adjust the resolution as needed
-    return hex_id
-
 def main():
     # Set your Mapbox access token here
     mapbox_access_token = 'pk.eyJ1IjoidHV0cmUiLCJhIjoiY2xybWRicGhyMHBiaDJrb3I3ZXFocTA2dSJ9.rBItPyF-B0-YPcl9W7KKHg'
@@ -61,16 +56,6 @@ def main():
     fig.update_layout(mapbox_accesstoken=mapbox_access_token)
     fig.update_layout(margin={"r":0,"t":0,"l":0,"b":0})
     fig.show()
-
-    hex_value = '882baa4523fffff'  # Replace with the specific hex ID you are interested in
-    filtered_df = df[df['Hex_ID'] == hex_value]
-
-    if not filtered_df.empty:
-        print(f"Points where Hex_ID equals '{hex_value}':")
-        for index, row in filtered_df.iterrows():
-            print(f"Latitude: {row['Latitude']}, Longitude: {row['Longitude']}")
-    else:
-        print(f"No points found for Hex_ID '{hex_value}'")
 
 if __name__ == "__main__":
     main()
