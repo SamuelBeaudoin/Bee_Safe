@@ -19,7 +19,7 @@ def main():
         min_count=1, color_continuous_scale="Viridis",
         color="COST", 
         agg_func=np.mean, 
-        range_color=[0,30]
+        range_color=[-20,20]
         # show_original_data=True,
         #original_data_marker=dict(size=4, opacity=0.6, color="deeppink")
         

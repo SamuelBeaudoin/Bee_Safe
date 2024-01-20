@@ -1,12 +1,12 @@
 import pandas as pd
-from compute_scores import preprocess_crime_data, proprocess_car_crash_data
+from compute_scores import preprocess_crime_data, proprocess_car_crash_data, preprocess_rue_pieton
 import os
 import glob
 
 def merge_data():
     # Get all the files in the data directory
     df1 = preprocess_crime_data()
-    df2 = pd.read_csv("../data/rues-pietonnes.csv")
+    df2 = preprocess_rue_pieton()
     df3 = pd.read_csv("../data/feux-pietons.csv")
     df4 = pd.read_csv("../data/feux-circulation.csv")
     df5 = proprocess_car_crash_data()
@@ -17,15 +17,14 @@ def merge_data():
 
     df2 = df2.rename(columns={'LATITUDE': 'Latitude', 'LONGITUDE': 'Longitude'})
     df2['Type'] = 'rues-pietonnes'
-    df2['COST'] = 0
 
     df3 = df3.rename(columns={'Latitude': 'Latitude', 'Longitude': 'Longitude'})
     df3['Type'] = 'feux-pietons'
-    df3['COST'] = 0
+    df3['COST'] = 100
 
     df4 = df4.rename(columns={'Latitude': 'Latitude', 'Longitude': 'Longitude'})
     df4['Type'] = 'feux-circulation'
-    df4['COST'] = 0
+    df4['COST'] = 100
 
     df5 = df5.rename(columns={'LOC_LAT': 'Latitude', 'LOC_LONG': 'Longitude'})
     df5['Type'] = 'collisions-routieres'
