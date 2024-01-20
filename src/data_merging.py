@@ -21,7 +21,7 @@ def merge_data():
 
     df3 = df3.rename(columns={'Latitude': 'Latitude', 'Longitude': 'Longitude'})
     df3['Type'] = 'feux-pietons'
-    df3['COST'] = 100
+    df3['COST'] = 0
 
     
     df4 = df4.rename(columns={'LOC_LAT': 'Latitude', 'LOC_LONG': 'Longitude'})
@@ -29,7 +29,7 @@ def merge_data():
 
     df5 = df5.rename(columns={'latitude': 'Latitude', 'longitude': 'Longitude'})
     df5['Type'] = 'travaux'
-    df5['COST'] = 100
+    df5['COST'] = 1.5
 
     # Selecting only the required columns
     df1 = df1[['Type', 'Latitude', 'Longitude', 'COST']]

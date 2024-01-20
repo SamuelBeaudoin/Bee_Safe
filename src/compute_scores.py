@@ -11,11 +11,11 @@ def preprocess_crime_data():
 
     # Severity of each crime
     crime_cost_severity= {
-        "Méfait": 1,
-        "Introduction": 1,
-        "Vols qualifiés": 3,
-        "Vol dans / sur véhicule à moteur": 4,
-        "Vol de véhicule à moteur": 4,
+        "Méfait": 2,
+        "Introduction": 3,
+        "Vols qualifiés": 4,
+        "Vol dans / sur véhicule à moteur": 6,
+        "Vol de véhicule à moteur": 6,
         "Infractions entrainant la mort": 10
     }
 
@@ -28,11 +28,11 @@ def proprocess_car_crash_data():
 
 
     GRAVITY_COSTS = {
-        "Dommages matériels inférieurs au seuil de rapportage": 1,
-	    "Dommages matériels seulement" : 1,
-	    "Léger" : 2,
+        "Dommages matériels inférieurs au seuil de rapportage": 3,
+	    "Dommages matériels seulement" : 3,
+	    "Léger" : 4,
 	    "Grave": 5,
-	    "Mortel": 6
+	    "Mortel": 8
     }
 
     def compute_cost(row):
@@ -57,12 +57,11 @@ def preprocess_rue_pieton():
 
     def compute_cost(row):
         if row['VOIE_CYCLABLE'] == 'Oui':
-            return 1
+            return -4
         else:
-            return 1
+            return -6
         
     df['COST'] = df.apply(compute_cost, axis=1)
-
     return df
 
 
