@@ -14,10 +14,10 @@ def merge_data():
 
     # Renaming latitude and longitude columns for consistency and adding 'Type' column
     df1 = df1.rename(columns={'LATITUDE': 'Latitude', 'LONGITUDE': 'Longitude'})
-    df1['Type'] = 'actes-criminels'
+    df1['Type'] = 'actes-criminels'#score: 10
 
     df2 = df2.rename(columns={'LATITUDE': 'Latitude', 'LONGITUDE': 'Longitude'})
-    df2['Type'] = 'rues-pietonnes'
+    df2['Type'] = 'rues-pietonnes'#score: 1
 
     df3 = df3.rename(columns={'Latitude': 'Latitude', 'Longitude': 'Longitude'})
     df3['Type'] = 'feux-pietons'
@@ -25,7 +25,7 @@ def merge_data():
 
     
     df4 = df4.rename(columns={'LOC_LAT': 'Latitude', 'LOC_LONG': 'Longitude'})
-    df4['Type'] = 'collisions-routieres'
+    df4['Type'] = 'collisions-routieres'#score: 7
 
     df5 = df5.rename(columns={'latitude': 'Latitude', 'longitude': 'Longitude'})
     df5['Type'] = 'travaux'
