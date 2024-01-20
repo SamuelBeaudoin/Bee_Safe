@@ -8,6 +8,7 @@ import h3
 import data_merging
 import dash_bootstrap_components as dbc
 import networkx as nx
+import plotly.colors
 
 app = dash.Dash(__name__, external_stylesheets=[dbc.themes.BOOTSTRAP])
 
@@ -16,6 +17,15 @@ mapbox_access_token = 'pk.eyJ1IjoidHV0cmUiLCJhIjoiY2xybWRicGhyMHBiaDJrb3I3ZXFocT
 
 # Load your data
 data = data_merging.merge_data()
+
+custom_color_scale = [
+    [0.0, 'rgb(0, 255, 0)'],    # Green at 0, corresponding to cost 1
+    [0.25, 'rgb(255, 255, 0)'], # Yellow at 0.25, around cost 2
+    [0.5, 'rgb(255, 150, 0)'],  # Orange at 0.5, around cost 2.5
+    # More gradual change between 2.5 and 10
+    [0.75, 'rgb(255, 0, 0)'],   # Red at 0.75, around cost 6
+    [1.0, 'rgb(128, 0, 0)']     # Dark red at 1, corresponding to cost 10
+]
   
 # Function to convert coordinates to hexagons
 def lat_lng_to_hexagon(latitude, longitude, resolution=10):
@@ -28,7 +38,7 @@ data['hex_id'] = data.apply(lambda row: lat_lng_to_hexagon(row['Latitude'], row[
 hexagon_average_cost = data.groupby('hex_id')['COST'].mean().reset_index()
 hexagon_average_cost.columns = ['hex_id', 'average_cost']
 
-input_values={}
+input_values = {}
 
 # Convert hexagon IDs to GeoJSON polygons
 def hexagon_to_geojson(hex_id):
@@ -51,18 +61,18 @@ geojson_hexagons = {
 # Layout of the Dash app
 app.layout = dbc.Container([
     html.H1("Hexagon Map", className="mt-4 mb-4"),
-    
+
     dbc.Row([
         dbc.Col([
             html.Label("Current Location"),
-            dcc.Input(id='current-lat-input', type='number', placeholder="Enter Latitude", value=data['Latitude'].mean(), className="mb-2"),
-            dcc.Input(id='current-lon-input', type='number', placeholder="Enter Longitude", value=data['Longitude'].mean(), className="mb-4")
+            dcc.Input(id='current-lat-input', type='number', placeholder="Enter Latitude", value=45.4957494, className="mb-2"),
+            dcc.Input(id='current-lon-input', type='number', placeholder="Enter Longitude", value=-73.5793263, className="mb-4")
         ], md=6),
-        
+
         dbc.Col([
             html.Label("Destination"),
-            dcc.Input(id='dest-lat-input', type='number', placeholder="Enter Latitude", value=data['Latitude'].mean(), className="mb-2"),
-            dcc.Input(id='dest-lon-input', type='number', placeholder="Enter Longitude", value=data['Longitude'].mean(), className="mb-4")
+            dcc.Input(id='dest-lat-input', type='number', placeholder="Enter Latitude", value=45.4957494, className="mb-2"),
+            dcc.Input(id='dest-lon-input', type='number', placeholder="Enter Longitude", value=-73.5793263, className="mb-4")
         ], md=6)
     ]),
 
@@ -78,14 +88,19 @@ app.layout = dbc.Container([
      Input('dest-lon-input', 'value')]
 )
 def update_map(current_lat, current_lon, dest_lat, dest_lon):
-
     input_values['current_lat'] = current_lat
     input_values['current_lon'] = current_lon
     input_values['dest_lat'] = dest_lat
     input_values['dest_lon'] = dest_lon
-    # Update the map based on user input
+
+    # Define a custom colorscale
+    custom_colorscale = plotly.colors.make_colorscale([
+        'aquamarine', 'darkgreen', 'green', 'yellow', 'darkorange', 'red', 'darkred', 'brown', 'saddlebrown', 'maroon', 'darkred', 'darkred', 'firebrick', 'firebrick', 'indianred', 'rosybrown', 'darkslategray', 'dimgray', 'gray', 'darkgray', 'black', 'black', 'black', 'black', 'black', 'black'
+    ])
+
+    # Update the map based on user input with the custom color scale
     fig = px.choropleth_mapbox(hexagon_average_cost, geojson=geojson_hexagons, locations='hex_id', color='average_cost',
-                                color_continuous_scale="Icefire", mapbox_style="mapbox://styles/mapbox/streets-v11",
+                                color_continuous_scale=custom_color_scale, mapbox_style="mapbox://styles/mapbox/streets-v11",
                                 zoom=10, center={"lat": current_lat, "lon": current_lon},
                                 opacity=0.5)
 
@@ -134,7 +149,7 @@ def update_map(current_lat, current_lon, dest_lat, dest_lon):
     end_hex = lat_lng_to_hexagon(dest_lat, dest_lon)    # lat_B and lon_B for point B
 
     # Find the shortest path
-    path = nx.shortest_path(G, source=start_hex, target=end_hex, weight='weight')
+    path = nx.shortest_path(G, source=start_hex, target=end_hex, weight='weight', method='dijkstra')
 
     # Get the center of each hexagon in the path
     path_centers = [h3.h3_to_geo(hex_id) for hex_id in path]
