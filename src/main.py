@@ -1,7 +1,7 @@
 import plotly.figure_factory as ff
 import plotly.express as px
 
-px.set_mapbox_access_token(open(".mapbox_token").read())
+px.set_mapbox_access_token(open("src/.mapbox_token").read())
 df = px.data.carshare()
 
 fig = ff.create_hexbin_mapbox(
