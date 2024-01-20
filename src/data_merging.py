@@ -7,8 +7,7 @@ def merge_data():
     df1 = pd.read_csv("data/actes-criminels.csv")
     df2 = pd.read_csv("data/rues-pietonnes.csv")
     df3 = pd.read_csv("data/feux-pietons.csv")
-    df4 = pd.read_csv("data/feux-circulation.csv")
-    df5 = pd.read_csv("data/collisions-routieres.csv")
+    df4 = pd.read_csv("data/collisions-routieres.csv")
 
     # Renaming latitude and longitude columns for consistency and adding 'Type' column
     df1 = df1.rename(columns={'LATITUDE': 'Latitude', 'LONGITUDE': 'Longitude'})
@@ -20,21 +19,17 @@ def merge_data():
     df3 = df3.rename(columns={'Latitude': 'Latitude', 'Longitude': 'Longitude'})
     df3['Type'] = 'feux-pietons'
 
-    df4 = df4.rename(columns={'Latitude': 'Latitude', 'Longitude': 'Longitude'})
-    df4['Type'] = 'feux-circulation'
-
-    df5 = df5.rename(columns={'LOC_LAT': 'Latitude', 'LOC_LONG': 'Longitude'})
-    df5['Type'] = 'collisions-routieres'
+    df4 = df4.rename(columns={'LOC_LAT': 'Latitude', 'LOC_LONG': 'Longitude'})
+    df4['Type'] = 'collisions-routieres'
 
     # Selecting only the required columns
     df1 = df1[['Type', 'Latitude', 'Longitude']]
     df2 = df2[['Type', 'Latitude', 'Longitude']]
     df3 = df3[['Type', 'Latitude', 'Longitude']]
     df4 = df4[['Type', 'Latitude', 'Longitude']]
-    df5 = df5[['Type', 'Latitude', 'Longitude']]
 
     # Concatenating all dataframes
-    merged_df = pd.concat([df1, df2, df3, df4, df5])
+    merged_df = pd.concat([df1, df2, df3, df4])
 
     # Drop rows with missing values
     merged_df = merged_df.dropna()
