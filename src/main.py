@@ -6,8 +6,7 @@ import data_merging
 import plotly.express as px
 import plotly.graph_objects as go
 import h3
-import folium
-import geojson
+
 
 
 # Define a custom aggregation function to calculate the average of the "cost" attribute for each row
