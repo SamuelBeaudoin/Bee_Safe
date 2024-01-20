@@ -21,7 +21,7 @@ def merge_data():
 
     df3 = df3.rename(columns={'Latitude': 'Latitude', 'Longitude': 'Longitude'})
     df3['Type'] = 'feux-pietons'
-    df3['COST'] = 10
+    df3['COST'] = 5
 
     
     df4 = df4.rename(columns={'LOC_LAT': 'Latitude', 'LOC_LONG': 'Longitude'})

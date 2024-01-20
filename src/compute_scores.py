@@ -16,7 +16,7 @@ def preprocess_crime_data():
         "Vols qualifiés": 3,
         "Vol dans / sur véhicule à moteur": 4,
         "Vol de véhicule à moteur": 4,
-        "Infractions entrainant la mort": 10
+        "Infractions entrainant la mort": 5
     }
 
     df['COST']=df['CATEGORIE'].map(crime_cost_severity)
@@ -32,7 +32,7 @@ def proprocess_car_crash_data():
 	    "Dommages matériels seulement" : 1,
 	    "Léger" : 2,
 	    "Grave": 5,
-	    "Mortel": 6
+	    "Mortel": 5
     }
 
     def compute_cost(row):
@@ -43,8 +43,8 @@ def proprocess_car_crash_data():
         
         weight = GRAVITY + NB_MORTS*0.5 + NB_BLESSES_GRAVES*0.25 + NB_BLESSES_LEGERS*0.1
         
-        if weight > 10:
-            return 10
+        if weight > 5:
+            return 5
         else:
             return weight
 
