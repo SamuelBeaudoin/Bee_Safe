@@ -7,9 +7,9 @@ def merge_data():
     # Get all the files in the data directory
     df1 = preprocess_crime_data()
     df2 = preprocess_rue_pieton()
-    df3 = pd.read_csv("../data/feux-pietons.csv")
-    df4 = pd.read_csv("../data/feux-circulation.csv")
-    df5 = proprocess_car_crash_data()
+    df3 = pd.read_csv("data/feux-pietons.csv")
+    df4 = proprocess_car_crash_data()
+    df5 = pd.read_csv("data/travaux.csv")
 
 
     # Renaming latitude and longitude columns for consistency and adding 'Type' column
@@ -22,16 +22,13 @@ def merge_data():
     df3 = df3.rename(columns={'Latitude': 'Latitude', 'Longitude': 'Longitude'})
     df3['Type'] = 'feux-pietons'
     df3['COST'] = 100
-
-    df4 = df4.rename(columns={'Latitude': 'Latitude', 'Longitude': 'Longitude'})
-    df4['Type'] = 'feux-circulation'
-    df4['COST'] = 100
     
     df4 = df4.rename(columns={'LOC_LAT': 'Latitude', 'LOC_LONG': 'Longitude'})
     df4['Type'] = 'collisions-routieres'#score: 7
 
     df5 = df5.rename(columns={'latitude': 'Latitude', 'longitude': 'Longitude'})
     df5['Type'] = 'travaux'
+    df5['COST'] = 100
 
     # Selecting only the required columns
     df1 = df1[['Type', 'Latitude', 'Longitude', 'COST']]
@@ -47,7 +44,7 @@ def merge_data():
     merged_df = merged_df.dropna()
 
     # Saving the merged dataframe to a new CSV file
-    output_file = '../data/merged_data.csv'
+    output_file = 'data/merged_data.csv'
     merged_df.to_csv(output_file, index=False)
 
     return merged_df
