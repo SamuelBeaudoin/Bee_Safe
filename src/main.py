@@ -30,6 +30,8 @@ data['hex_id'] = data.apply(lambda row: lat_lng_to_hexagon(row['Latitude'], row[
 hexagon_counts = data['hex_id'].value_counts().reset_index()
 hexagon_counts.columns = ['hex_id', 'count']
 
+input_values={}
+
 # Convert hexagon IDs to GeoJSON polygons with correct coordinate order
 def hexagon_to_geojson(hex_id):
     hex_boundary = h3.h3_to_geo_boundary(hex_id, geo_json=False)  # Get boundary in (lat, lon)
@@ -79,6 +81,11 @@ app.layout = dbc.Container([
      Input('dest-lon-input', 'value')]
 )
 def update_map(current_lat, current_lon, dest_lat, dest_lon):
+
+    input_values['current_lat'] = current_lat
+    input_values['current_lon'] = current_lon
+    input_values['dest_lat'] = dest_lat
+    input_values['dest_lon'] = dest_lon
     # Update the map based on user input
     fig = px.choropleth_mapbox(hexagon_counts, geojson=geojson_hexagons, locations='hex_id', color='count',
                                 color_continuous_scale="Viridis", mapbox_style="mapbox://styles/mapbox/streets-v11",
