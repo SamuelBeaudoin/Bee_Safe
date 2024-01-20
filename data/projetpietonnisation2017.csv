@@ -1,0 +1,151 @@
+ID_PROJET,TYPE_AXE,TOPONYME,NOM_PROJET,DATE_OUVERTURE,ANNEE_IMPLANTATION_1,ANNEE_IMPLANTATION_2,ARRONDISSEMENT,HIERARCHIE_ROUTIERE,VOIE_CYCLABLE,VOIE_CYCLABLE_AXES_ADJACENTS,PASSAGE_BUS,PASSAGE_BUS_AXES_ADJACENTS,TYPE_SITE_INTERVENTION,TYPE_REPARTAGE,MODE_IMPLANTATION,PROGRAMME,LIMITES_1,LIMITES_2,LONGUEUR_TRONCON,PHOTO,CREDIT_PHOTO,OBJECTIF_THEMATIQUE,ATTRAIT,LATITUDE,LONGITUDE,X,Y
+RP0001,Avenue,Park Stanley,Avenue Park Stanley ,2017-06-01,2015,2017,Ahuntsic-Cartierville,Locale,Oui,Oui,Non,Non,5. Rue en bordure ou entre deux parcs ou place publique,1. Piétonnisation complète de la rue,Permanent,Oui,rue Basile Routhier,ave Durham,181.23,http://depot.ville.montreal.qc.ca/ruespietonnes_DO/RP0001_1_VilleMtl.jpg,Ville de Montréal,"Pique-nique
+Agriculture urbaine
+Date
+Jeu/exercice
+Insolite
+Lecture","parc Maurice-Richard
+parc Basile-Routhier",45.55834,-73.672874,291303.813848193,5046506.57760237
+RP0002,Chemin,Frère André,Placette de la Côte-des-Neiges ,2017-06-19,2016,2018,Côte-des-Neiges–Notre-Dame-de-Grâce,Locale,Non,Non,Oui,Oui,3. Rue transversale à une rue commerciale,1. Piétonnisation complète de la rue,Temporaire à permanent,Oui,ch Queen Mary,rue du Frère André,49.68,http://depot.ville.montreal.qc.ca/ruespietonnes_DO/RP0002_1_VilleMtl.jpg,Ville de Montréal,"Pique-nique
+Insolite
+Lecture","Oratoire Saint-Joseph
+restaurants",45.494668,-73.618346,295550.357941755,5039422.92377208
+RP0003,Voie ferrée,"Promenade Luc Larivée et Place Valois
+(Lien vert traversant la Place Valois)",Promenade Luc-Larivée,Permanent,2004-2009,2013-2014,Mercier–Hochelaga-Maisonneuve,Voie ferrée,Non,Oui,Non,Oui,5. Rue en bordure ou entre deux parcs ou place publique,1. Piétonnisation complète de la rue,Permanent,Non,rue de Chambly,ave Charlemagne,557.54,http://depot.ville.montreal.qc.ca/ruespietonnes_DO/RP0003_1_VilleMtl.jpg,Ville de Montréal,"Photo
+Date
+Insolite","emprise ferroviaire
+anciennes usines",45.547953,-73.543845,301376.412223519,5045338.65339963
+RP0004,Rue,Ontario Est,Rue Ontario,2017-06-12,2015-2016,2017,Mercier–Hochelaga-Maisonneuve,Artère,Non,Oui,Oui,Oui,"2. Rue commerciale de quartier, d’ambiance ou de destination & 5. Rue en bordure ou entre deux parcs ou place publique",2. Place publique sur rue en empiétant sur les voies de stationnement et de circulation et maintien d’une voie de circulation peu large en rive,Temporaire à permanent,Oui,rue Nicolet,ave Bourbonnière,182.11,http://depot.ville.montreal.qc.ca/ruespietonnes_DO/RP0004_1_MelanieDusseault.jpg,Mélanie Dusseault,"Photo
+Insolite","place Simon-Valois
+commerces",45.547314,-73.54354,301400.189286029,5045267.62749338
+RP0005,Avenue,Desjardins,Patio Culturel,Période estivale,2016,,Mercier–Hochelaga-Maisonneuve,Locale,Non,Non,Non,Oui,"4. Rue bordant un bâtiment public ou institutionnel  (tels qu’une école primaire ou secondaire, un cégep ou une université, une station de métro, un musée, théâtre, marché public, une église, etc.)",2. Place publique sur rue en empiétant sur les voies de stationnement et de circulation et maintien d’une voie de circulation peu large en rive,Temporaire saisonnière,Non,rue Ontario E,place Ernest Gendreau,36.77,http://depot.ville.montreal.qc.ca/ruespietonnes_DO/RP0005_1_CorentinHignoul.jpg,Corentin Hignoul,"Photo
+Jeu/exercice
+Insolite
+Lecture","maison de la culture Maisonneuve
+bibliothèque",45.550998,-73.540351,301649.407428226,5045676.90542096
+RP0006,Rues," Monsabré et Lacordaire, Louis-Veuillot",Carré Notre-Dame-des-Victoires ,2017-06-16,2016,2018,Mercier–Hochelaga-Maisonneuve,Locale,Non,Non,Non,Oui,1. Noyau villageois,1. Piétonnisation complète de la rue & 2. Place publique sur rue en empiétant sur les voies de stationnement et de circulation et maintien d’une voie de circulation peu large en rive,Temporaire à permanent,Oui,rue Boileau,ave Pierre-De Coubertin,164.45,http://depot.ville.montreal.qc.ca/ruespietonnes_DO/RP0006_1_MelanieDusseault.jpg,Mélanie Dusseault,"Jeu/exercice
+Lecture","noyau villageois
+église Notre-Dame-des-Victoires
+parc Thibodeau",45.572326,-73.54094,301604.627749681,5048047.14430594
+RP0007,Rue,Amos,Station Amos,,2014,,Montréal-Nord,Artère,Oui,Oui,Oui,Oui,3. Rue transversale à une rue commerciale,1. Piétonnisation complète de la rue,Permanent,Non,boul. Pie-IX,ave Saint-Julien,68.32,http://depot.ville.montreal.qc.ca/ruespietonnes_DO/RP0007_1_Montreal2020.jpg,Montréal 2020,"Insolite
+Lecture",Pôle civique - Divertir,45.594799,-73.640724,293820.855313428,5050553.43232809
+RP0008,Rue,Dijon,Rue de Dijon ,2017-06-11,2016,2018,Montréal-Nord,Locale,Non,Non,Non,Oui,6. Rue entre un parc et un bâtiment public ou institutionnel,2. Place publique sur rue en empiétant sur les voies de stationnement et de circulation et maintien d’une voie de circulation peu large en rive,Temporaire à permanent,Oui,ave P.-M.- Favier, ave Hurteau,107.81,http://depot.ville.montreal.qc.ca/ruespietonnes_DO/RP0008_1_VilleMtl.jpg,Ville de Montréal,"Photo
+Agriculture urbaine
+Jeu/exercice
+Insolite","école primaire Le Carignan
+parc Le Carignan",45.6107,-73.616415,295719.984363006,5052317.50882348
+RP0009,Rue,Prince-Arthur Est,Prince-Arthur Est,Permanent,1979,,Le Plateau-Mont-Royal,Locale,Non,Oui,Non,Oui,"2. Rue commerciale de quartier, d’ambiance ou de destination",1. Piétonnisation complète de la rue,Permanent,Non,boul. Saint-Laurent, ave Laval,286.96,http://depot.ville.montreal.qc.ca/ruespietonnes_DO/RP0009_1_VilleMtl.jpg,Ville de Montréal,"Date
+Insolite","commerces
+boul. Saint-Laurent
+carré Saint-Louis",45.515177,-73.571494,299214.227492075,5041697.77329293
+RP0010,Rue,Saint-Dominique,Rue Saint-Dominique,Permanent,2010,,Le Plateau-Mont-Royal,Locale,Non,Oui,Non,Oui,6. Rue entre un parc et un bâtiment public ou institutionnel,1. Piétonnisation complète de la rue,Permanent,Non,ave Laurier E, boul Saint-Joseph,117.19,http://depot.ville.montreal.qc.ca/ruespietonnes_DO/RP0010_1_VilleMtl.jpg,Ville de Montréal,"Pique-nique
+Date
+Insolite
+Lecture","parc Lahaie
+église Saint-Enfant-Jésus",45.523263,-73.591701,297636.495919457,5042597.9810812
+RP0011,Rue ,Franchère,"Rue Franchère
+",Permanent,2011,,Le Plateau-Mont-Royal,Locale,Non,Oui,Non,Oui,5. Rue en bordure ou entre deux parcs ou place publique & 6. Rue entre un parc et un bâtiment public ou institutionnel,1. Piétonnisation complète de la rue,Permanent,Non,terrasse Mercure, rue Rachel E,74.63,http://depot.ville.montreal.qc.ca/ruespietonnes_DO/RP0011_1_VilleMtl.jpg,Ville de Montréal,"Pique-nique
+Lecture","École Saint-Louis-de-Gonzague
+Presbytère Montréal Sarang
+parc Baldwin",45.535893,-73.565079,299717.292532191,5043999.5355221
+RP0012,Avenue,Laurier E,Place du Coteau-Saint-Louis,Permanent,2013,,Le Plateau-Mont-Royal,Locale,Oui,Oui,Non,Oui,1. Noyau villageois,2. Place publique sur rue en empiétant sur les voies de stationnement et de circulation et maintien d’une voie de circulation peu large en rive,Permanent,Non,rue Saint-Denis, rue Saint-Hubert ,245.37,http://depot.ville.montreal.qc.ca/ruespietonnes_DO/RP0012_1_VilleMtl.jpg,Ville de Montréal,Photo,"station du métro Laurier
+école Laurier
+église Saint-Denis",45.527932,-73.588699,297871.579503722,5043116.58797733
+RP0013,Rue,Marie-Anne,Rue Marie-Anne,Permanent,2012,,Le Plateau-Mont-Royal,Locale,Non,Oui,Non,Non,5. Rue en bordure ou entre deux parcs ou place publique,1. Piétonnisation complète de la rue,Permanent,Non,rue Fullum, rue Chapleau,139.46,http://depot.ville.montreal.qc.ca/ruespietonnes_DO/RP0013_1_VilleMtl.jpg,Ville de Montréal,"Pique-nique
+Lecture",parc Baldwin,45.536993,-73.567387,299537.139012633,5044121.92849579
+RP0014,Boulevard,Saint-Jean-Baptiste,Place du Village-de-la-Pointe-aux-Trembles,,2014,,Rivière-des-Prairies–Pointe-aux-Trembles,Locale,Non,Non,Non,Oui,1. Noyau villageois,1. Piétonnisation complète de la rue,Permanent,Non,rue Notre-Dame E, rue Bellerive,164.43,http://depot.ville.montreal.qc.ca/ruespietonnes_DO/RP0014_1_VilleMtl.jpg,Ville de Montréal,"Insolite
+Lecture",Vieux PAT,45.639747,-73.489118,305648.324656372,5055539.05136235
+RP0015,Rue,Place du Marché-du-Nord,Place du Marché-du-Nord et du-Sud,Période estivale,2009,,Rosemont–La Petite-Patrie,Locale,Non,Oui,Non,Oui,"2. Rue commerciale de quartier, d’ambiance ou de destination",1. Piétonnisation complète de la rue & 2. Place publique sur rue en empiétant sur les voies de stationnement et de circulation et maintien d’une voie de circulation peu large en rive,Permanent,Non,ave Casgrain, ave Henri-Julien,369.25,http://depot.ville.montreal.qc.ca/ruespietonnes_DO/RP0015_1_VilleMtl.jpg,Ville de Montréal,Pique-nique,Marché Jean-Talon,45.536217,-73.615722,295762.09697167,5044039.99581794
+RP0016,Avenue,6ème avenue,6ème avenue,,2012,,Rosemont–La Petite-Patrie,Locale,Non,Oui,Non,Non,5. Rue en bordure ou entre deux parcs ou place publique,1. Piétonnisation complète de la rue,Permanent,Non,rue Saint-Zotique E, 6ème avenue,85.22,http://depot.ville.montreal.qc.ca/ruespietonnes_DO/RP0016_1_VilleMtl.jpg,Ville de Montréal,"Pique-nique
+Jeu/exercice",parc Beaubien,45.553199,-73.591884,297626.008113458,5045924.82040234
+RP0017,Avenue,Shamrock,Place Shamrock,2017-06-20,2014-2016,2018,Rosemont–La Petite-Patrie,Locale,Non,Oui,Non,Oui,3. Rue transversale à une rue commerciale,2. Place publique sur rue en empiétant sur les voies de stationnement et de circulation et maintien d’une voie de circulation peu large en rive,Permanent,Oui,rue Saint-Dominique, ave Casgrain,150.9,http://depot.ville.montreal.qc.ca/ruespietonnes_DO/RP0017_1_VilleMtl.jpg,Ville de Montréal,"Photo
+Pique-nique
+Jeu/exercice","marché Jean-Talon
+Petite-Italie
+boulevard Saint-Laurent
+Caserne no 31",45.534948,-73.615958,295743.461645649,5043898.99701481
+RP0018,Ruelle,Saint-Pierre,Woonerf Saint-Pierre,,2013,,Le Sud-Ouest,Ruelle,Non,Non,Non,Non,5. Rue en bordure ou entre deux parcs ou place publique,1. Piétonnisation complète de la rue,Permanent,Non,ch de la Côte-Saint-Paul, rue Saint-Rémi,398.3,http://depot.ville.montreal.qc.ca/ruespietonnes_DO/RP0018_1_VilleMtl.jpg,Ville de Montréal,"Pique-nique
+Date
+Insolite
+Lecture",,45.468824,-73.591448,297649.37314837,5036548.1331437
+RP0019,Rue,Dominion,Dominion,,,,Le Sud-Ouest,Locale,Non,Non,Non,Non,7. Passage entre rues résidentielles,1. Piétonnisation complète de la rue,Permanent,Non,rue Quesnel, rue Saint-Jacques,66.86,http://depot.ville.montreal.qc.ca/ruespietonnes_DO/RP0019_1_VilleMtl.jpg,Ville de Montréal,Insolite,,45.486473,-73.57596,298862.285889068,5038508.20520615
+RP0020,Rue,Workman,Workman,,,,Le Sud-Ouest,Locale,Non,Non,Non,Non,6. Rue entre un parc et un bâtiment public ou institutionnel,1. Piétonnisation complète de la rue,Permanent,Non,parc Vinet, rue Vinet,34.08,,,,"parc Vinet
+Bibliothèque Georges-Vanier
+Centre Culturel Georges-Vanier",45.483793,-73.575202,298921.259215682,5038210.32068806
+RP0021,Rue,Mullins,Mullins,,,,Le Sud-Ouest,Locale,Non,Non,Non,Non,6. Rue entre un parc et un bâtiment public ou institutionnel,1. Piétonnisation complète de la rue,Permanent,Non,rue d'Hibernia, rue Shearer,84.74,http://depot.ville.montreal.qc.ca/ruespietonnes_DO/RP0021_1_VilleMtl.jpg,Ville de Montréal,Jeu/exercice,École Charles-Lemoyne,45.48058,-73.561876,299962.713199547,5037852.37115388
+RP0022,Rue,Eadie,Eadie,,2015,,Le Sud-Ouest,Locale,Non,Non,Non,Oui,6. Rue entre un parc et un bâtiment public ou institutionnel,1. Piétonnisation complète de la rue,Temporaire,Non,rue de Maricourt, rue Dubois,64.94,http://depot.ville.montreal.qc.ca/ruespietonnes_DO/RP0022_1_ConcertationVilleEmardCoteStPaul.jpg,Concertation Ville-ÉmardCôte St-Paul,,,45.457957,-73.590509,297721.436906269,5035340.40339526
+RP0023,Rue,Charlebois,Charlebois,,2016,,Le Sud-Ouest,Locale,Non,Non,Non,Non,"4. Rue bordant un bâtiment public ou institutionnel  (tels qu’une école primaire ou secondaire, un cégep ou une université, une station de métro, un musée, théâtre, marché public, une église, etc.)",2. Place publique sur rue en empiétant sur les voies de stationnement et de circulation et maintien d’une voie de circulation peu large en rive,Temporaire,Non,rue Sainte-Marguerite, rue Saint-Ferdinand,138.91,,,,,45.476416,-73.587034,297995.43233297,5037391.4481015
+RP0024,Rue,de Biencourt,Parvis de Biencourt ,,2016,2018,Le Sud-Ouest,Locale,Non,Non,Non,Oui,1. Noyau villageois & 3. Rue transversale à une rue commerciale,2. Place publique sur rue en empiétant sur les voies de stationnement et de circulation et maintien d’une voie de circulation peu large en rive,Temporaire à permanent,Oui,boul. Monk, rue Briand,64.66,http://depot.ville.montreal.qc.ca/ruespietonnes_DO/RP0024_1_VilleMtl.jpg,Ville de Montréal,"Agriculture urbaine
+Date
+Lecture","Théatre Paradoxe
+bilbiothèque
+Maison de la culture",45.458851,-73.595713,297314.558744411,5035440.22468431
+RP0025,Rue,Place Jacques-Cartier,Place Jacques Cartier ,,1998,,Ville-Marie,Locale,Non,Oui,Non,Oui,"2. Rue commerciale de quartier, d’ambiance ou de destination",1. Piétonnisation complète de la rue,Permanent,Non,rue Notre-Dame E, rue de la Commune E,339.68,http://depot.ville.montreal.qc.ca/ruespietonnes_DO/RP0025_1_VilleMtl.jpg,Ville de Montréal,"Photo
+Date",Place Jacques-Cartier,45.507993,-73.553264,300637.994220242,5040898.30433428
+RP0026,Rue,de la Gauchetière,Rue de la Gauchetière,,,,Ville-Marie,Locale,Non,Oui,Non,Oui,"2. Rue commerciale de quartier, d’ambiance ou de destination",1. Piétonnisation complète de la rue,Permanent,Non,rue Jeanne-Mance, rue Saint-Dominique,290.74,http://depot.ville.montreal.qc.ca/ruespietonnes_DO/RP0026_1_VilleMtl.jpg,Ville de Montréal,"Photo
+Date
+Insolite
+",Quartier chinois,45.507044,-73.56073,300054.527295661,5040793.25540162
+RP0027,Ruelle,Charlotte,Passage Charlotte,,2006,,Ville-Marie,Ruelle,Non,Non,Non,Oui,7. Passage entre rues résidentielles,1. Piétonnisation complète de la rue,Permanent,Non,ave de l'Hôtel de Ville, rue Sainte-Élisabeth,51.77,http://depot.ville.montreal.qc.ca/ruespietonnes_DO/RP0027_1_VilleMtl.jpg,Ville de Montréal,"Insolite
+Lecture",,45.511457,-73.560875,300043.568625066,5041283.68337965
+RP0028,Passage,Passage reliant la rue St-Denis à la bibliothèque nationale du Québec,Passage reliant la rue St-Denis à la bibliothèque nationale du Québec,,,,Ville-Marie,Locale,Non,Oui,Non,Oui,"3. Rue transversale à une rue commerciale & 4. Rue bordant un bâtiment public ou institutionnel  (tels qu’une école primaire ou secondaire, un cégep ou une université, une station de métro, un musée, théâtre, marché public, une église, etc.)",1. Piétonnisation complète de la rue,Permanent,Non,rue Saint-Denis, ave Savoie,46.57,http://depot.ville.montreal.qc.ca/ruespietonnes_DO/RP0028_1_VilleMtl.jpg,Ville de Montréal,"Photo
+Date
+Insolite","rue Saint-Denis
+Grande Bibliothèque",45.515254,-73.563178,299863.957051516,5041705.78559559
+RP0029,Rue,Sainte-Catherine Est,Aires libres,Période estivale,2006…,,Ville-Marie,Artère,Non,Oui,Oui,Oui,"2. Rue commerciale de quartier, d’ambiance ou de destination",1. Piétonnisation complète de la rue,Temporaire saisonnière,Non,rue Saint-Hubert, ave Papineau,934.66,http://depot.ville.montreal.qc.ca/ruespietonnes_DO/RP0029_1_CEUM.jpg,CEUM,"Photo
+Date",Village,45.519516,-73.555254,300483.378253375,5042178.96846354
+RP0030,Rue,Sainte-Catherine Ouest,Sainte-Catherine Ouest,,2008…,,Ville-Marie,Artère,Non,Oui,Non,Oui,"2. Rue commerciale de quartier, d’ambiance ou de destination",1. Piétonnisation complète de la rue,Temporaire saisonnière,Non,rue De Bleury, boul. Saint-Laurent,303.06,http://depot.ville.montreal.qc.ca/ruespietonnes_DO/RP0030_1_VilleMtl.jpg,Ville de Montréal,"Photo
+Date
+Lecture",Quartier des spectacles,45.508188,-73.565326,299695.49694988,5040920.67060119
+RP0031,Rue,Saint-Paul E,Saint-Paul Est,,2009…,,Ville-Marie,Locale,Non,Oui,Non,Oui,"2. Rue commerciale de quartier, d’ambiance ou de destination",3. Places publiques sur rue en empiétant sur les voies de stationnement en rive et maintien d’une ou de deux voie(s) de circulation au centre de la chaussée,Temporaire saisonnière,Non,rue Saint-Laurent, rue du Marché Bonsecours,315.97,http://depot.ville.montreal.qc.ca/ruespietonnes_DO/RP0031_1_VilleMtl.jpg,Ville de Montréal,"Photo
+Date",commerces (restaurants),45.507006,-73.552709,300681.289490269,5040788.58984223
+RP0032,Rue,McTavish,McTavish,,2010,,Ville-Marie,Locale,Non,Non,Non,Oui,"4. Rue bordant un bâtiment public ou institutionnel  (tels qu’une école primaire ou secondaire, un cégep ou une université, une station de métro, un musée, théâtre, marché public, une église, etc.)",1. Piétonnisation complète de la rue,Permanent,Non,ave du Docteur-Penfield, rue Sherbrooke O,238.08,http://depot.ville.montreal.qc.ca/ruespietonnes_DO/RP0032_1_VilleMtl.jpg,Ville de Montréal,Insolite,"Université McGill
+Musée Redpath
+Réservoir McTavish
+Mont-Royal",45.503338,-73.577075,298776.925602405,5040382.50128193
+RP0033,Rue ,Victoria,La Forêt urbaine,Période estivale,2011…,,Ville-Marie,Locale,Non,Oui,Non,Oui,"4. Rue bordant un bâtiment public ou institutionnel  (tels qu’une école primaire ou secondaire, un cégep ou une université, une station de métro, un musée, théâtre, marché public, une église, etc.)",1. Piétonnisation complète de la rue,Temporaire saisonnière,Non,rue Sherbrooke O, ave du Président-Kennedy,88.59,"http://depot.ville.montreal.qc.ca/ruespietonnes_DO/RP0033_1_MuseeMcCord.jpg
+http://depot.ville.montreal.qc.ca/ruespietonnes_DO/RP0033_2_MuseeMcCord.jpg",Musée McCord,"Photo
+Pique-nique
+Date
+Insolite
+Lecture","Musée McCord
+Avenue McGill College",45.504135,-73.573579,299050.203853012,5040470.81609992
+RP0034,Avenue,du Musée,du Musée,,2012…,,Ville-Marie,Locale,Non,Non,Non,Oui,"4. Rue bordant un bâtiment public ou institutionnel  (tels qu’une école primaire ou secondaire, un cégep ou une université, une station de métro, un musée, théâtre, marché public, une église, etc.)",1. Piétonnisation complète de la rue,Temporaire saisonnière,Non,Place Ontario, rue Sherbrooke O,101.47,http://depot.ville.montreal.qc.ca/ruespietonnes_DO/RP0034_1_Infopresse.jpg,Infopresse,Photo,"MBAM
+Quartier du musée",45.499108,-73.580181,298533.736062485,5039912.65703977
+RP0035,Rue,le Royer O,Cours le Royer,,1982,,Ville-Marie,Locale,Non,Non,Non,Non,3. Rue transversale à une rue commerciale,1. Piétonnisation complète de la rue,Permanent,Non,rue Saint-Sulpice, rue Saint-Dizier,147.03,http://depot.ville.montreal.qc.ca/ruespietonnes_DO/RP0035_1_VilleMtl.jpg,Ville de Montréal,"Date
+Lecture","Place d'Armes
+Basilique Notre-Dame
+Rue Saint-Paul O",45.504948,-73.554811,300516.881977759,5040559.99310526
+RP0036,Rue,Dalcourt,Dalcourt,,,,Ville-Marie,Locale,Non,Oui,Non,Oui,3. Rue transversale à une rue commerciale,3. Places publiques sur rue en empiétant sur les voies de stationnement en rive et maintien d’une ou de deux voie(s) de circulation au centre de la chaussée,Permanent,Non,rue Sainte-Catherine E, boul René-Lévesque E,223.73,,,,,45.520294,-73.552877,300669.134135433,5042265.3032193
+RP0037,Rue,de la Capitale,Place Royale,,,,Ville-Marie,Locale,Non,Oui,Non,Non,"4. Rue bordant un bâtiment public ou institutionnel  (tels qu’une école primaire ou secondaire, un cégep ou une université, une station de métro, un musée, théâtre, marché public, une église, etc.)",1. Piétonnisation complète de la rue,Permanent,Non,place Royale, place Royale,28.8,,,,,45.503317,-73.554395,300549.266889988,5040378.71713779
+RP0038,Rue,Saint-Amable,Saint-Amable,,1969,,Ville-Marie,Locale,Non,Non,Non,Non,3. Rue transversale à une rue commerciale,1. Piétonnisation complète de la rue,Permanent,Non,rue Saint-Vincent, place Jacques-Cartier,32.08,http://depot.ville.montreal.qc.ca/ruespietonnes_DO/RP0038_1_MartinNew.jpg,Martin New,"Photo
+Date","Place Jacques-Cartier
+Rue Saint-Paul E",45.507369,-73.553008,300657.952087309,5040828.94561636
+RP0039,Rue,Saint-Vincent,Saint-Vincent,,,,Ville-Marie,Locale,Non,Non,Non,Non,3. Rue transversale à une rue commerciale,1. Piétonnisation complète de la rue,Temporaire,Non,rue Saint-Amable, rue Saint-Paul E,60.68,,,,,45.507023,-73.553005,300658.161132841,5040790.49428291
+RP0040,Rue,de Maisonneuve O,Place Norman-Bethune,,2009,,Ville-Marie,Collectrice,Oui,Non,Oui,Non,"2. Rue commerciale de quartier, d’ambiance ou de destination",2. Place publique sur rue en empiétant sur les voies de stationnement et de circulation et maintien d’une voie de circulation peu large en rive,Permanent,Non,rue Guy, rue Mackay,41.42,http://depot.ville.montreal.qc.ca/ruespietonnes_DO/RP0040_1_VilleMtl.jpg,Ville de Montréal,"Photo
+Insolite",Université Concordia,45.496062,-73.579269,298604.676196468,5039574.08314903
+RP0041,Rue,Sainte-Rose,Sainte-Rose,,,,Ville-Marie,Locale,Non,Non,Non,Non,7. Passage entre rues résidentielles,3. Places publiques sur rue en empiétant sur les voies de stationnement en rive et maintien d’une ou de deux voie(s) de circulation au centre de la chaussée,Permanent,Non,rue Panet, rue de Champlain,257.07,,,,,45.520195,-73.55301,300658.736624474,5042254.30811749
+RP0042,Rue,Lonergan,Lonergan,,,,Ville-Marie,Locale,Non,Non,Non,Non,7. Passage entre rues résidentielles,3. Places publiques sur rue en empiétant sur les voies de stationnement en rive et maintien d’une ou de deux voie(s) de circulation au centre de la chaussée,Permanent,Non,rue Dalcourt, rue Alexandre de Sève,40.76,,,,,45.520031,-73.551815,300752.081018352,5042236.02172956
+RP0043,Rue,Kimberly,Kimberly,,,,Ville-Marie,Locale,Non,Oui,Non,Oui,"4. Rue bordant un bâtiment public ou institutionnel  (tels qu’une école primaire ou secondaire, un cégep ou une université, une station de métro, un musée, théâtre, marché public, une église, etc.)",1. Piétonnisation complète de la rue,Permanent,Non,rue Sherbrooke E, ave du Président-Kennedy,216.84,http://depot.ville.montreal.qc.ca/ruespietonnes_DO/RP0043_1_VilleMtl.jpg,Ville de Montréal,"
+Lecture","Pavillon UQAM
+Quartier des spectacles",45.509884,-73.569181,299394.433760708,5041109.40033997
+RP0044,Rue,Émery,"Émery 
+Quartier Latin (cinéma)",,,,Ville-Marie,Locale,Non,Oui,Non,Oui,"2. Rue commerciale de quartier, d’ambiance ou de destination",2. Place publique sur rue en empiétant sur les voies de stationnement et de circulation et maintien d’une voie de circulation peu large en rive,Permanent,Non,rue Sanguinet, rue Saint-Denis,116.38,http://depot.ville.montreal.qc.ca/ruespietonnes_DO/RP0044_1_VilleMtl.jpg,Ville de Montréal,"Photo
+Date
+Insolite","rue Saint-Denis
+Grande Bibliothèque",45.514556,-73.563655,299826.627968251,5041628.24577817
+RP0045,Rue,Stanislas,Rue Stanislas,Permanent,2015,,Villeray–Saint-Michel–Parc-Extension,Locale,Non,Non,Non,Non,"4. Rue bordant un bâtiment public ou institutionnel  (tels qu’une école primaire ou secondaire, un cégep ou une université, une station de métro, un musée, théâtre, marché public, une église, etc.)",1. Piétonnisation complète de la rue,Permanent,Oui,rue de Londres, rue Stanislas,72.81,http://depot.ville.montreal.qc.ca/ruespietonnes_DO/RP0045_1_VilleMtl.jpg,Ville de Montréal,"Jeu/exercice
+Insolite",École primaire Bois-Franc-Aquarelle,45.522789,-73.698307,289308.512492024,5042560.34362395
+RP0046,Rue,Villeray,Place Villeray,,2015,2015,Villeray–Saint-Michel–Parc-Extension,Artère,Non,Oui,Oui,Oui,"2. Rue commerciale de quartier, d’ambiance ou de destination",1. Piétonnisation complète de la rue,Permanent,Non,rue Lajeunesse, rue Saint-Gérard,35.95,http://depot.ville.montreal.qc.ca/ruespietonnes_DO/RP0046_1_LeHuffingtonPost.jpg,Le Huffington Post,"Jeu/exercice
+Lecture",commerces,45.542231,-73.622578,295227.663032564,5044709.13354006
+RP0047,Rue,De Castelnau E,Place De Castelnau,2017-05-01,2015,2018,Villeray–Saint-Michel–Parc-Extension,Locale,Oui,Oui,Non,Non,"2. Rue commerciale de quartier, d’ambiance ou de destination",1. Piétonnisation complète de la rue,Temporaire à permanent,Oui,ave de Gaspé, rue Drolet ,134.98,http://depot.ville.montreal.qc.ca/ruespietonnes_DO/RP0047_1_VilleMtl.jpg,Ville de Montréal,"Photo
+Agriculture urbaine
+Date","commerces (cafés, restaurants, boulangerie, crèmerie)
+Paroisse Sainte-Cécile
+marché Jean-Talon",45.537931,-73.618023,295582.668614191,5044230.73623717
+RP0048,Avenue,Prince-Albert,Prince Albert Square,,2014,,Ville de Westmount,Locale,Non,Non,Non,Oui,3. Rue transversale à une rue commerciale,1. Piétonnisation complète de la rue,Permanent,Non,rue Sherbrooke O, ave Winchester,14.69,http://depot.ville.montreal.qc.ca/ruespietonnes_DO/RP0048_1_VilleMtl.jpg,Ville de Montréal,Lecture,commerces,45.47809,-73.603815,296683.685981722,5037579.03757819
+RP0049,Rue,Guilbault E,Place Guilbault,Permanent,2015,2017,Le Plateau-Mont-Royal,Locale,Non,Non,Non,Oui,3. Rue transversale à une rue commerciale,,Permanent,Non,boul Saint-Laurent, rue Saint-Dominique,49.8,,,,,45.514869,-73.574081,299012.075553911,5041663.7282182
+RP0050,Place,D'Youville,Espace piéton de Pointe-à-Callière,Période estivale,2012,,Ville-Marie,Locale,Non,Oui,Non,Oui,"4. Rue bordant un bâtiment public ou institutionnel  (tels qu’une école primaire ou secondaire, un cégep ou une université, une station de métro, un musée, théâtre, marché public, une église, etc.)",,Temporaire saisonnière,Non,rue Saint-François-Xavier,Rue de la Commune O,111.63,,,,,45.503186,-73.554053,300575.982908732,5040364.14100138
+RP0051,Rue,Saint-Ambroise et Atwater,Place du Marché,2017-06-20,2017,,Le Sud-Ouest,Locale,Oui,Non,Non,Non,"4. Rue bordant un bâtiment public ou institutionnel  (tels qu’une école primaire ou secondaire, un cégep ou une université, une station de métro, un musée, théâtre, marché public, une église, etc.)",2. Place publique sur rue en empiétant sur les voies de stationnement et de circulation et maintien d’une voie de circulation peu large en rive,Temporaire à permanent,Oui,ave Greene, rue Rufus Rockhead,55.81,,,,"Marché Atwater, commerces, parc du canal Lachine",45.479192,-73.575638,298886.694645196,5037699.04322017
+RP0052,Rue,Roy,Les Terrasses Roy,2017-06-22,2017,,Le Plateau-Mont-Royal,Locale,Non,Non,Non,Non,"2. Rue commerciale de quartier, d’ambiance ou de destination",2. Place publique sur rue en empiétant sur les voies de stationnement et de circulation et maintien d’une voie de circulation peu large en rive,Temporaire à permanent,Oui,ave Coloniale, rue de Bullion,53.51,,,,commerces,45.51659,-73.574977,298942.249924111,5041855.04918742
+RP0053,Rue,Wellington,Place Wellington,2017-06-29,2017,,Verdun,Artère,Non,Oui,Oui,Oui,1. Noyau villageois,2. Place publique sur rue en empiétant sur les voies de stationnement et de circulation et maintien d’une voie de circulation peu large en rive,Temporaire à permanent,Oui, rue de l’Église, rue Galt,86.71,,,,"commerces, église et école Notre Dame des sept douleurs",45.462431,-73.567061,299555.681982005,5035835.80022263
