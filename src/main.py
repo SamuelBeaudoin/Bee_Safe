@@ -7,8 +7,6 @@ import plotly.graph_objects as go
 import h3
 import data_merging
 import dash_bootstrap_components as dbc
-import folium
-import geojson
 import networkx as nx
 
 app = dash.Dash(__name__, external_stylesheets=[dbc.themes.BOOTSTRAP])
@@ -126,7 +124,10 @@ def update_map(current_lat, current_lon, dest_lat, dest_lon):
             if neighbor in G.nodes:
                 # Define the cost of the edge (you can adjust this logic)
                 edge_cost = (G.nodes[hex_id]['cost'] + G.nodes[neighbor]['cost']) / 2
-                G.add_edge(hex_id, neighbor, weight=edge_cost)
+                if edge_cost < 0:
+                    G.add_edge(hex_id, neighbor, weight=0)
+                else:
+                    G.add_edge(hex_id, neighbor, weight=edge_cost)
 
     # Define your start and end hexagons based on points A and B
     start_hex = lat_lng_to_hexagon(current_lat, current_lon)  # lat_A and lon_A for point A
