@@ -56,6 +56,55 @@ def main():
     # Set the Mapbox access token for the figure
     fig.update_layout(mapbox_accesstoken=mapbox_access_token)
     fig.update_layout(margin={"r":0,"t":0,"l":0,"b":0})
+    #fig.show()
+
+    # Create a graph
+    G = nx.Graph()
+
+    # Add nodes (hexagons) to the graph
+    for index, row in hexagon_average_cost.iterrows():
+        G.add_node(row['hex_id'], cost=row['average_cost'])
+
+    # Define a function to find adjacent hexagons
+    def find_adjacent_hexagons(hex_id):
+        # Using h3 library to find neighbors
+        return h3.hex_ring(hex_id, 1)
+
+    # Add edges between adjacent hexagons
+    for hex_id in G.nodes:
+        neighbors = find_adjacent_hexagons(hex_id)
+        for neighbor in neighbors:
+            if neighbor in G.nodes:
+                # Define the cost of the edge (you can adjust this logic)
+                edge_cost = (G.nodes[hex_id]['cost'] + G.nodes[neighbor]['cost']) / 2
+                G.add_edge(hex_id, neighbor, weight=edge_cost)
+
+    # Define your start and end hexagons based on points A and B
+    lat_A = 45.527507267584674
+    lon_A = -73.6
+    lat_B = 45.527507267584674
+    lon_B = -73.61880594710823
+    start_hex = lat_lng_to_hexagon(lat_A, lon_A)  # lat_A and lon_A for point A
+    end_hex = lat_lng_to_hexagon(lat_B, lon_B)    # lat_B and lon_B for point B
+
+    # Find the shortest path
+    path = nx.shortest_path(G, source=start_hex, target=end_hex, weight='weight')
+
+    # Get the center of each hexagon in the path
+    path_centers = [h3.h3_to_geo(hex_id) for hex_id in path]
+
+    # Add the path as a line on the map
+    path_lon = [lon for lat, lon in path_centers]
+    path_lat = [lat for lat, lon in path_centers]
+
+    fig.add_trace(go.Scattermapbox(
+        mode = "lines",
+        lon = path_lon,
+        lat = path_lat,
+        marker = {'size': 10},
+        line = {'width': 3, 'color': 'red'}
+    ))
+
     fig.show()
 
 if __name__ == "__main__": 
