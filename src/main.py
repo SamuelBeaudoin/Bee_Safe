@@ -22,11 +22,13 @@ data = data_merging.merge_data()
 
 custom_color_scale = [
     [0.0, 'rgb(0, 255, 0)'],    # Green at 0, corresponding to cost 1
-    [0.25, 'rgb(255, 255, 0)'], # Yellow at 0.25, around cost 2
-    [0.5, 'rgb(255, 150, 0)'],  # Orange at 0.5, around cost 2.5
+    [0.1, 'rgb(255, 255, 0)'],
+    [0.2, 'rgb(255, 150, 0)'], # Yellow at 0.25, around cost 2
+    [0.4, 'rgb(255, 0, 0)'],  # Orange at 0.5, around cost 2.5
     # More gradual change between 2.5 and 10
-    [0.75, 'rgb(255, 0, 0)'],   # Red at 0.75, around cost 6
-    [1.0, 'rgb(128, 0, 0)']     # Dark red at 1, corresponding to cost 10
+    [0.6, 'rgb(128, 0, 0)'],   # Red at 0.75, around cost 6
+    [0.8, 'rgb(165,42,42)'],     # Dark red at 1, corresponding to cost 10
+    [1.0, 'rgb(0, 0, 0)']
 ]
   
 # Function to convert coordinates to hexagons
