@@ -22,11 +22,11 @@ data = data_merging.merge_data()
 
 custom_color_scale = [
     [0.0, 'rgb(0, 255, 0)'],    # Green at 0, corresponding to cost 1
-    [0.1, 'rgb(255, 255, 0)'],
-    [0.2, 'rgb(255, 150, 0)'], # Yellow at 0.25, around cost 2
-    [0.4, 'rgb(255, 0, 0)'],  # Orange at 0.5, around cost 2.5
+    [0.15, 'rgb(255, 255, 0)'],
+    [0.35, 'rgb(255, 150, 0)'], # Yellow at 0.25, around cost 2
+    [0.55, 'rgb(255, 0, 0)'],  # Orange at 0.5, around cost 2.5
     # More gradual change between 2.5 and 10
-    [0.6, 'rgb(128, 0, 0)'],   # Red at 0.75, around cost 6
+    [0.7, 'rgb(128, 0, 0)'],   # Red at 0.75, around cost 6
     [0.8, 'rgb(165,42,42)'],     # Dark red at 1, corresponding to cost 10
     [1.0, 'rgb(0, 0, 0)']
 ]
@@ -97,11 +97,6 @@ def update_map(current_lat, current_lon, dest_lat, dest_lon):
     input_values['dest_lat'] = dest_lat
     input_values['dest_lon'] = dest_lon
 
-    # Define a custom colorscale
-    custom_colorscale = plotly.colors.make_colorscale([
-        'aquamarine', 'darkgreen', 'green', 'yellow', 'darkorange', 'red', 'darkred', 'brown', 'saddlebrown', 'maroon', 'darkred', 'darkred', 'firebrick', 'firebrick', 'indianred', 'rosybrown', 'darkslategray', 'dimgray', 'gray', 'darkgray', 'black', 'black', 'black', 'black', 'black', 'black'
-    ])
-
     # Update the map based on user input with the custom color scale
     fig = px.choropleth_mapbox(hexagon_average_cost, geojson=geojson_hexagons, locations='hex_id', color='average_cost',
                                 color_continuous_scale=custom_color_scale, mapbox_style="mapbox://styles/mapbox/streets-v11",
@@ -119,6 +114,7 @@ def update_map(current_lat, current_lon, dest_lat, dest_lon):
         ),
         text=["Current Location", "Destination"]
     ))
+    
 
      # Set the Mapbox access token for the figure
     fig.update_layout(mapbox_accesstoken=mapbox_access_token)
