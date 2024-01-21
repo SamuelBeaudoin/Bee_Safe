@@ -65,9 +65,14 @@ geojson_hexagons = {
 
 # Layout of the Dash app
 app.layout = dbc.Container([
-    html.H1([html.Strong("Bee Safe")], className="mt-4 mb-4", style={'color':'#8A2BE2'}),
-
-
+    dbc.Row([
+        dbc.Col([
+            html.Img(src='/assets/logo.png', style={'width': '100px', 'height': '100px'})
+        ], md=1),
+        dbc.Col([
+            html.H1([html.Strong("Bee Safe")], className="mt-4 mb-4", style={'color':'#34c3d7'})
+        ], md=11)
+    ]),
 
     dbc.Row([
         dbc.Col([
