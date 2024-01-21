@@ -65,7 +65,7 @@ geojson_hexagons = {
 
 # Layout of the Dash app
 app.layout = dbc.Container([
-    html.H1("Street Safety", className="mt-4 mb-4"),
+    html.H1("Bee Safe", className="mt-4 mb-4"),
 
     dbc.Row([
         dbc.Col([
