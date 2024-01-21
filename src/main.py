@@ -7,8 +7,6 @@ import plotly.graph_objects as go
 import h3
 import data_merging
 import dash_bootstrap_components as dbc
-import folium
-import geojson
 import networkx as nx
 import plotly.colors
 
@@ -79,6 +77,17 @@ app.layout = dbc.Container([
             dcc.Input(id='dest-lon-input', type='number', placeholder="Enter Longitude", value=-73.5793263, className="mb-4")
         ], md=6)
     ]),
+    # dbc.Row([
+    #     dbc.Col([
+    #         html.Label("Current Location"),
+    #         dcc.Input(id='current-lat-input', type='text', placeholder="Enter Address", value="", className="mb-2")
+    #     ], md=6),
+
+    #     dbc.Col([
+    #         html.Label("Destination"),
+    #         dcc.Input(id='dest-lat-input', type='text', placeholder="Enter Address", value="", className="mb-2")
+    #     ], md=6)
+    # ]),
     dcc.Graph(id='hexagon-map', clickData=None),
     html.Div(id='hexagon-stats')
 ])
@@ -140,7 +149,10 @@ def update_map(current_lat, current_lon, dest_lat, dest_lon):
             if neighbor in G.nodes:
                 # Define the cost of the edge (you can adjust this logic)
                 edge_cost = (G.nodes[hex_id]['cost'] + G.nodes[neighbor]['cost']) / 2
-                G.add_edge(hex_id, neighbor, weight=edge_cost)
+                if edge_cost < 0:
+                    G.add_edge(hex_id, neighbor, weight=0)
+                else:
+                    G.add_edge(hex_id, neighbor, weight=edge_cost)
 
     # Define your start and end hexagons based on points A and B
     start_hex = lat_lng_to_hexagon(current_lat, current_lon)  # lat_A and lon_A for point A
@@ -195,6 +207,7 @@ def update_map(current_lat, current_lon, dest_lat, dest_lon):
     [Input('hexagon-map', 'clickData')],
     [State('hexagon-map', 'figure')]
 )
+
 def display_hexagon_stats(clickData, figure):
     if clickData:
         hex_id = clickData['points'][0]['location']

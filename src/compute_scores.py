@@ -1,19 +1,18 @@
 import pandas as pd
 import os
 import glob
-
 # SCALE IS 0 to 10
 
 # Function for computing crime severity, for the actes-criminels data set
 # Simply adds a COST field depending on the crime 
 def preprocess_crime_data():
-    df = pd.read_csv("data/actes-criminels.csv")
+    df = pd.read_csv("../data/actes-criminels.csv")
 
     # Severity of each crime
     crime_cost_severity= {
         "Méfait": 1,
         "Introduction": 1,
-        "Vols qualifiés": 3,
+        "Vols qualifiés": 2,
         "Vol dans / sur véhicule à moteur": 4,
         "Vol de véhicule à moteur": 4,
         "Infractions entrainant la mort": 5
@@ -24,7 +23,7 @@ def preprocess_crime_data():
     return df
 
 def proprocess_car_crash_data():
-    df = pd.read_csv("data/collisions-routieres.csv")
+    df = pd.read_csv("../data/collisions-routieres.csv")
 
 
     GRAVITY_COSTS = {
@@ -53,7 +52,7 @@ def proprocess_car_crash_data():
     return df
 
 def preprocess_rue_pieton():
-    df = pd.read_csv("data/rues-pietonnes.csv")
+    df = pd.read_csv("../data/rues-pietonnes.csv")
 
     def compute_cost(row):
         if row['VOIE_CYCLABLE'] == 'Oui':
