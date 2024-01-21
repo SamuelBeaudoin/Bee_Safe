@@ -83,12 +83,12 @@ app.layout = dbc.Container([
         ], md=3),
 
         dbc.Col([
-            html.Label("Current Location Address"),
+            html.Label("Current Location Address", style={'color': '#db523e'}),
             dcc.Input(id='current-address-input', type='text', placeholder="Enter Address", value="1450 Rue Guy Montreal", className="mb-2"),
         ], md=3, style={'text-align': 'center'}),
 
         dbc.Col([
-            html.Label("Destination Address"),
+            html.Label("Destination Address", style={'color': '#db523e'}),
             dcc.Input(id='dest-address-input', type='text', placeholder="Enter Address", value="1450 Rue Guy Montreal", className="mb-2"),
         ], md=3, style={'text-align': 'center'}),
         
@@ -103,7 +103,7 @@ app.layout = dbc.Container([
             html.Label("")
         ], md=4),
         dbc.Col(
-            dbc.Button("Submit Addresses", id='submit-addresses', color="primary", className="mt-2", n_clicks=0),
+            dbc.Button("Submit Addresses", id='submit-addresses', color="primary", className="mt-2", n_clicks=0, style={'text-align': 'center', 'background-color': '#db523e', 'border':'None'}),
             width=4, md={'size': 4}, style={'text-align': 'center'}  # Center the button with offset
         ),
         dbc.Col([
@@ -303,12 +303,12 @@ def display_hexagon_stats(clickData, figure):
 =======
             dbc.Row([
                 dbc.Col([
-                    html.Label(f"Average Cost: {cost}")
+                    html.Label(f"Average Cost: {cost}", style={'color': '#34c3d7'})
                 ], md=6)
             ]),
             dbc.Row([
                 dbc.Col([
-                    html.Label(f"Points of interest: {len(associated_points)}")
+                    html.Label(f"Points of interest: {len(associated_points)}", style={'color': '#34c3d7'})
                 ], md=6)
             ]),
             dcc.Graph(figure=bar_plot)
