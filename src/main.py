@@ -151,6 +151,10 @@ app.layout = dbc.Container([
     html.Div(id='hexagon-stats')
 ])
 
+def normalize_value(original_value, min_original_range, max_original_range, min_new_range, max_new_range):
+    normalized_value = ((original_value - min_original_range) / (max_original_range - min_original_range)) * (max_new_range - min_new_range) + min_new_range
+    return normalized_value
+
 # Callback to update the map based on address inputs
 @app.callback(
     Output('hexagon-map', 'figure'),
@@ -218,7 +222,13 @@ def update_map(submit_clicks, current_address, dest_address, confidence_level):
         for neighbor in neighbors:
             if neighbor in G.nodes:
                 # Define the cost of the edge (you can adjust this logic)
-                edge_cost = ((G.nodes[hex_id]['cost'] + G.nodes[neighbor]['cost']) / 2) - (confidence_level / 5)
+                edge_cost = (G.nodes[hex_id]['cost'] + G.nodes[neighbor]['cost']) / 2
+                min_original_range = 1
+                max_original_range = 10
+                min_new_range = 1
+                max_new_range = (11-confidence_level)
+
+                edge_cost = normalize_value(edge_cost, min_original_range, max_original_range, min_new_range, max_new_range)
                 if edge_cost < 0:
                     edge_cost = 0
 
