@@ -86,7 +86,16 @@ app.layout = dbc.Container([
         )
     ]),
 
-    dcc.Graph(id='hexagon-map', clickData=None),
+    dcc.Loading(
+        id="loading-geocode",
+        type="default",
+        children=[
+            html.Div([
+                dcc.Graph(id='hexagon-map', clickData=None),
+            ]),
+        ]
+    ),
+
     html.Div(id='hexagon-stats')
 ])
 
