@@ -115,7 +115,22 @@ app.layout = dbc.Container([
                 value=5,  # Set a default value if needed
                 className="mb-2"
             ),
-        ], md=3, style={'text-align': 'center'})
+        ], md=3, style={'text-align': 'center'}),
+
+        dbc.Col([
+        ], md=1),
+        dbc.Col([
+            html.Label("Resolution Level", style={'color': '#db523e'}),
+            dcc.Slider(
+                id='resolution-level-slider',
+                min=7,
+                max=11,
+                step=1,
+                marks={i: str(i) for i in range(7, 12)},
+                value=10,  # Set a default value if needed
+                className="mb-2"
+            ),
+            ], md=3, style={'text-align': 'center'})
     ]),
 
 
@@ -161,9 +176,10 @@ def normalize_value(original_value, min_original_range, max_original_range, min_
     [Input('submit-addresses', 'n_clicks')],  # Button for submitting addresses
     [State('current-address-input', 'value'),  # State of current address input
      State('dest-address-input', 'value')],     # State of destination address input
-     [State('confidence-level-slider', 'value')]
+     [State('confidence-level-slider', 'value')],
+     [State('resolution-level-slider', 'value')]
 )
-def update_map(submit_clicks, current_address, dest_address, confidence_level):
+def update_map(submit_clicks, current_address, dest_address, confidence_level, resolution_level):
     current_lat, current_lon = 45.5017, -73.5673  # Default to Montreal coordinates
     dest_lat, dest_lon = 45.5017, -73.5673        # Default to Montreal coordinates
 
