@@ -1,7 +1,7 @@
 import dash
 import dash_core_components as dcc
 import dash_html_components as html
-from dash.dependencies import Input, Output
+from dash.dependencies import Input, Output, State
 import plotly.express as px
 import plotly.graph_objects as go
 import h3
@@ -64,7 +64,7 @@ geojson_hexagons = {
 
 # Layout of the Dash app
 app.layout = dbc.Container([
-    html.H1("Hexagon Map", className="mt-4 mb-4"),
+    html.H1("Street Safety", className="mt-4 mb-4"),
 
     dbc.Row([
         dbc.Col([
@@ -79,8 +79,8 @@ app.layout = dbc.Container([
             dcc.Input(id='dest-lon-input', type='number', placeholder="Enter Longitude", value=-73.5793263, className="mb-4")
         ], md=6)
     ]),
-
-    dcc.Graph(id='hexagon-map')
+    dcc.Graph(id='hexagon-map', clickData=None),
+    html.Div(id='hexagon-stats')
 ])
 
 # Callback to update the map based on user input
@@ -101,7 +101,7 @@ def update_map(current_lat, current_lon, dest_lat, dest_lon):
     fig = px.choropleth_mapbox(hexagon_average_cost, geojson=geojson_hexagons, locations='hex_id', color='average_cost',
                                 color_continuous_scale=custom_color_scale, mapbox_style="mapbox://styles/mapbox/streets-v11",
                                 zoom=10, center={"lat": current_lat, "lon": current_lon},
-                                opacity=0.5)
+                                opacity=0.5, hover_data={'hex_id': False, 'average_cost': False})
 
     # Add red markers for the current location and destination
     fig.add_trace(go.Scattermapbox(
@@ -112,7 +112,8 @@ def update_map(current_lat, current_lon, dest_lat, dest_lon):
             size=10,
             color="red"
         ),
-        text=["Current Location", "Destination"]
+        text=["Current Location", "Destination"],
+        hoverinfo="none"
     ))
     
 
@@ -182,12 +183,25 @@ def update_map(current_lat, current_lon, dest_lat, dest_lon):
         lon = path_lon,
         lat = path_lat,
         marker = {'size': 10},
-        line = {'width': 3, 'color': 'red'}
+        line = {'width': 3, 'color': 'red'},
+        hoverinfo="none"
     ))
 
     # Return the figure
     return fig
 
+@app.callback(
+    Output('hexagon-stats', 'children'),
+    [Input('hexagon-map', 'clickData')],
+    [State('hexagon-map', 'figure')]
+)
+def display_hexagon_stats(clickData, figure):
+    if clickData:
+        hex_id = clickData['points'][0]['location']
+        # Find the cost associated with the clicked hexagon
+        cost = hexagon_average_cost[hexagon_average_cost['hex_id'] == hex_id]['average_cost'].iloc[0]
+        return f" Average Cost: {cost}"
+    return "Click on a hexagon to see its stats."
 
 if __name__ == '__main__':
     app.run_server(debug=True)
