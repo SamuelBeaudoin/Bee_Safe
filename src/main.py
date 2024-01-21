@@ -3,6 +3,7 @@ from dash import dcc
 from dash import html
 from dash.dependencies import Input, Output, State
 import plotly.express as px
+import pandas as pd
 import plotly.graph_objects as go
 import h3
 import data_merging
@@ -20,6 +21,8 @@ geocoder = OpenCageGeocode(opencage_api_key)
 
 # Load your data
 data = data_merging.merge_data()
+
+crime_data = pd.read_csv(filepath_or_buffer="../data/actes-criminels.csv")
 
 custom_color_scale = [
     [0.0, 'rgb(0, 255, 0)'],    # Green at 0, corresponding to cost 1
@@ -217,6 +220,37 @@ def update_map(submit_clicks, current_address, dest_address):
     # Return the figure
     return fig
 
+
+def create_barplot(hex_id):
+    associated_points = data[data['hex_id'] == hex_id]
+    # Create a bar plot by Type for the associated points
+    bar_plot = px.bar(
+        associated_points, 
+        x='Type', 
+        title=f'Data About Hexagone',
+        labels={'Type': 'Type', 'count': 'Count'}, color='Type')
+    
+    return dcc.Graph(figure=bar_plot)
+
+def create_crime_plot(hex_id):
+    global crime_data
+    # Create a bar plot by Type for the associated points
+    associated_points = data[data['hex_id'] == hex_id]
+    print(crime_data)
+
+    # Filter crime_data based on the longitude and latitude values from associated_points
+    filtered_crime_data = crime_data[
+        (crime_data['LONGITUDE'].isin(associated_points['LONGITUDE'])) &
+        (crime_data['LATITUDE'].isin(associated_points['LATITUDE']))
+    ]
+    bar_plot = px.bar(
+        filtered_crime_data,
+        x='Type', 
+        title=f'Data About Hexagone',
+        labels={'Type': 'Type', 'count': 'Count'}, color='Type')
+    
+    return dcc.Graph(figure=bar_plot)
+
 @app.callback(
     Output('hexagon-stats', 'children'),
     [Input('hexagon-map', 'clickData')],
@@ -226,22 +260,17 @@ def display_hexagon_stats(clickData, figure):
     if clickData:
 
         hex_id = clickData['points'][0]['location']
-        associated_points = data[data['hex_id'] == hex_id]
         # Find the cost associated with the clicked hexagon
         cost = hexagon_average_cost[hexagon_average_cost['hex_id'] == hex_id]['average_cost'].iloc[0]
 
-        # Create a bar plot by Type for the associated points
-        bar_plot = px.bar(
-            associated_points, 
-            x='Type', 
-            title=f'Bar Plot by Type - Hexagon {hex_id}',
-            labels={'Type': 'Type', 'count': 'Count'}, color='Type')
-
+        general_data_plot = create_barplot(hex_id)
+        # crime_plot=  create_crime_plot(hex_id)
 
         return [
-            f"Average Cost: {cost} \n",
-            f"Points of interest: {len(associated_points)}",
-            dcc.Graph(figure=bar_plot)
+            f"Average Risk Factor: {cost} \n",
+            f"Points of interest: {len(data[data['hex_id'] == hex_id])}",
+            general_data_plot,
+            # crime_plot
         ]
 
 
