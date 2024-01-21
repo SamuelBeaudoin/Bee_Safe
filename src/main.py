@@ -80,7 +80,17 @@ app.layout = dbc.Container([
         ], md=6)
     ]),
     dcc.Graph(id='hexagon-map', clickData=None),
-    html.Div(id='hexagon-stats')
+    html.Div(id='hexagon-stats'),
+    dbc.Modal(
+        [
+            dbc.ModalHeader("Hexagon Stats"),
+            dbc.ModalBody(id="modal-body"),
+            dbc.ModalFooter(
+                dbc.Button("Close", id="close-modal", className="ml-auto")
+            ),
+        ],
+        id="hexagon-modal",
+    ),
 ])
 
 # Callback to update the map based on user input
@@ -115,7 +125,6 @@ def update_map(current_lat, current_lon, dest_lat, dest_lon):
         text=["Current Location", "Destination"],
         hoverinfo="none"
     ))
-    
 
      # Set the Mapbox access token for the figure
     fig.update_layout(mapbox_accesstoken=mapbox_access_token)
@@ -200,8 +209,23 @@ def display_hexagon_stats(clickData, figure):
         hex_id = clickData['points'][0]['location']
         # Find the cost associated with the clicked hexagon
         cost = hexagon_average_cost[hexagon_average_cost['hex_id'] == hex_id]['average_cost'].iloc[0]
-        return f" Average Cost: {cost}"
-    return "Click on a hexagon to see its stats."
+
+# Callback to open/close the modal
+@app.callback(
+    [Output("hexagon-modal", "is_open"),
+     Output("modal-body", "children")],
+    [Input("hexagon-map", "clickData"),
+     Input("close-modal", "n_clicks")],
+    [State("hexagon-modal", "is_open")]
+)
+def toggle_modal(click_data, n_clicks, is_open):
+    if click_data:
+        hex_id = click_data['points'][0]['location']
+        # Find the cost associated with the clicked hexagon
+        cost = hexagon_average_cost[hexagon_average_cost['hex_id'] == hex_id]['average_cost'].iloc[0]
+        modal_body = f" Average Cost: {cost}"
+        return not is_open, modal_body
+    return False, None
 
 if __name__ == '__main__':
     app.run_server(debug=True)
