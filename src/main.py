@@ -76,22 +76,46 @@ app.layout = dbc.Container([
 
     dbc.Row([
         dbc.Col([
-            html.Label("")
-        ], md=3),
 
+        ], md=1),
         dbc.Col([
-            html.Label("Current Location Address", style={'color': '#db523e'}),
-            dcc.Input(id='current-address-input', type='text', placeholder="Enter Address", value="1450 Rue Guy Montreal", className="mb-2"),
+            dbc.Row([
+                    html.Label("Current Location Address", style={'color': '#db523e'})
+            ]),
+            dbc.Row([
+                    dcc.Input(id='current-address-input', type='text', placeholder="Enter Address", value="1450 Rue Guy Montreal", className="mb-2")
+            ])
         ], md=3, style={'text-align': 'center'}),
 
         dbc.Col([
-            html.Label("Destination Address", style={'color': '#db523e'}),
-            dcc.Input(id='dest-address-input', type='text', placeholder="Enter Address", value="1450 Rue Guy Montreal", className="mb-2"),
-        ], md=3, style={'text-align': 'center'}),
-        
+
+        ], md=1),
+
         dbc.Col([
-            html.Label("")
-        ], md=3)
+            dbc.Row([
+                    html.Label("Destination Address", style={'color': '#db523e'})
+            ]),
+            dbc.Row([
+                    dcc.Input(id='dest-address-input', type='text', placeholder="Enter Address", value="1450 Rue Guy Montreal", className="mb-2")
+            ])
+        ], md=3, style={'text-align': 'center'}),
+
+        dbc.Col([
+
+        ], md=1),
+
+        dbc.Col([
+            html.Label("Confidence Level", style={'color': '#db523e'}),
+            dcc.Slider(
+                id='confidence-level-slider',
+                min=1,
+                max=10,
+                step=1,
+                marks={i: str(i) for i in range(1, 11)},
+                value=5,  # Set a default value if needed
+                className="mb-2"
+            ),
+        ], md=3, style={'text-align': 'center'})
     ]),
 
 
