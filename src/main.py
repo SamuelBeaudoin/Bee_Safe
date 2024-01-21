@@ -1,6 +1,6 @@
 import dash
-import dash_core_components as dcc
-import dash_html_components as html
+from dash import dcc
+from dash import html
 from dash.dependencies import Input, Output, State
 import plotly.express as px
 import plotly.graph_objects as go
@@ -70,13 +70,20 @@ app.layout = dbc.Container([
     dbc.Row([
         dbc.Col([
             html.Label("Current Location Address"),
-            dcc.Input(id='current-address-input', type='text', placeholder="Enter Address", value = "1450 Rue Guy Montreal", className="mb-2"),
+            dcc.Input(id='current-address-input', type='text', placeholder="Enter Address", value="1450 Rue Guy Montreal", className="mb-2"),
         ], md=6),
 
         dbc.Col([
             html.Label("Destination Address"),
-            dcc.Input(id='dest-address-input', type='text', placeholder="Enter Address", value = "1450 Rue Guy Montreal", className="mb-2"),
-        ], md=6)
+            dcc.Input(id='dest-address-input', type='text', placeholder="Enter Address", value="1450 Rue Guy Montreal", className="mb-2"),
+        ], md=6),
+    ]),
+
+    dbc.Row([
+        dbc.Col(
+            dbc.Button("Submit Addresses", id='submit-addresses', color="primary", className="mt-2", n_clicks=0),
+            width=4, md={'size': 4, 'offset': 4}  # Center the button with offset
+        )
     ]),
 
     dcc.Graph(id='hexagon-map', clickData=None),
@@ -86,19 +93,27 @@ app.layout = dbc.Container([
 # Callback to update the map based on address inputs
 @app.callback(
     Output('hexagon-map', 'figure'),
-    [Input('current-address-input', 'value'),
-     Input('dest-address-input', 'value')]
+    [Input('submit-addresses', 'n_clicks')],  # Button for submitting addresses
+    [State('current-address-input', 'value'),  # State of current address input
+     State('dest-address-input', 'value')]     # State of destination address input
 )
-def update_map(current_address, dest_address):
-    if current_address and dest_address:
-        # Geocode the addresses to coordinates
-        current_location = geocoder.geocode(current_address)
-        dest_location = geocoder.geocode(dest_address)
+def update_map(submit_clicks, current_address, dest_address):
+    current_lat, current_lon = 45.5017, -73.5673  # Default to Montreal coordinates
+    dest_lat, dest_lon = 45.5017, -73.5673        # Default to Montreal coordinates
 
-        if current_location and dest_location:
-            current_lat, current_lon = current_location[0]['geometry']['lat'], current_location[0]['geometry']['lng']
-            dest_lat, dest_lon = dest_location[0]['geometry']['lat'], dest_location[0]['geometry']['lng']
+    if submit_clicks:
+        # Process the current address
+        if current_address:
+            current_location = geocoder.geocode(current_address)
+            if current_location:
+                current_lat, current_lon = current_location[0]['geometry']['lat'], current_location[0]['geometry']['lng']
 
+        # Process the destination address
+        if dest_address:
+            dest_location = geocoder.geocode(dest_address)
+            if dest_location:
+                dest_lat, dest_lon = dest_location[0]['geometry']['lat'], dest_location[0]['geometry']['lng']
+                        
     # Update the map based on user input with the custom color scale
     fig = px.choropleth_mapbox(hexagon_average_cost, geojson=geojson_hexagons, locations='hex_id', color='average_cost',
                                 color_continuous_scale=custom_color_scale, mapbox_style="mapbox://styles/mapbox/streets-v11",
@@ -115,7 +130,8 @@ def update_map(current_address, dest_address):
             color="red"
         ),
         text=["Current Location", "Destination"],
-        hoverinfo="none"
+        hoverinfo="none",
+        showlegend=False
     ))
 
      # Set the Mapbox access token for the figure
@@ -163,9 +179,9 @@ def update_map(current_address, dest_address):
         # Adjust the zoom level based on the distance between the points
         # You can fine-tune the zoom level based on your specific requirements
         distance = h3.point_dist((current_lat, current_lon), (dest_lat, dest_lon), unit='m')
-        if distance < 1000:  # Less than 1 km
+        if distance < 2000:  # Less than 2 km
             zoom = 14
-        elif distance < 5000:  # Less than 5 km
+        elif distance < 6000:  # Less than 6 km
             zoom = 12
         else:
             zoom = 10
@@ -185,7 +201,8 @@ def update_map(current_address, dest_address):
         lat = path_lat,
         marker = {'size': 10},
         line = {'width': 3, 'color': 'red'},
-        hoverinfo="none"
+        hoverinfo="none",
+        showlegend=False
     ))
 
     # Return the figure
