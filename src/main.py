@@ -156,9 +156,10 @@ app.layout = dbc.Container([
     Output('hexagon-map', 'figure'),
     [Input('submit-addresses', 'n_clicks')],  # Button for submitting addresses
     [State('current-address-input', 'value'),  # State of current address input
-     State('dest-address-input', 'value')]     # State of destination address input
+     State('dest-address-input', 'value')],     # State of destination address input
+     [State('confidence-level-slider', 'value')]
 )
-def update_map(submit_clicks, current_address, dest_address):
+def update_map(submit_clicks, current_address, dest_address, confidence_level):
     current_lat, current_lon = 45.5017, -73.5673  # Default to Montreal coordinates
     dest_lat, dest_lon = 45.5017, -73.5673        # Default to Montreal coordinates
 
@@ -217,7 +218,10 @@ def update_map(submit_clicks, current_address, dest_address):
         for neighbor in neighbors:
             if neighbor in G.nodes:
                 # Define the cost of the edge (you can adjust this logic)
-                edge_cost = (G.nodes[hex_id]['cost'] + G.nodes[neighbor]['cost']) / 2
+                edge_cost = ((G.nodes[hex_id]['cost'] + G.nodes[neighbor]['cost']) / 2) - (confidence_level / 5)
+                if edge_cost < 0:
+                    edge_cost = 0
+
                 G.add_edge(hex_id, neighbor, weight=edge_cost)
 
     # Define your start and end hexagons based on points A and B
