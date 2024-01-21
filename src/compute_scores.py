@@ -1,7 +1,6 @@
 import pandas as pd
 import os
 import glob
-
 # SCALE IS 0 to 10
 
 # Function for computing crime severity, for the actes-criminels data set
@@ -11,16 +10,15 @@ def preprocess_crime_data():
 
     # Severity of each crime
     crime_cost_severity= {
-        "Méfait": -2,
-        "Introduction": -3,
-        "Vols qualifiés": -4,
-        "Vol dans / sur véhicule à moteur": -6,
-        "Vol de véhicule à moteur": -6,
-        "Infractions entrainant la mort": -10
+        "Méfait": 1,
+        "Introduction": 1,
+        "Vols qualifiés": 2,
+        "Vol dans / sur véhicule à moteur": 4,
+        "Vol de véhicule à moteur": 4,
+        "Infractions entrainant la mort": 5
     }
 
     df['COST']=df['CATEGORIE'].map(crime_cost_severity)
-    df['COST'] = df['COST'] / 10
 
     return df
 
@@ -29,11 +27,11 @@ def proprocess_car_crash_data():
 
 
     GRAVITY_COSTS = {
-        "Dommages matériels inférieurs au seuil de rapportage": -3,
-	    "Dommages matériels seulement" : -3,
-	    "Léger" : -4,
-	    "Grave": -5,
-	    "Mortel": -8
+        "Dommages matériels inférieurs au seuil de rapportage": 1,
+	    "Dommages matériels seulement" : 1,
+	    "Léger" : 2,
+	    "Grave": 5,
+	    "Mortel": 5
     }
 
     def compute_cost(row):
@@ -42,12 +40,12 @@ def proprocess_car_crash_data():
         NB_BLESSES_GRAVES=row['NB_BLESSES_GRAVES']
         NB_BLESSES_LEGERS=row['NB_BLESSES_LEGERS']
         
-        weight = GRAVITY - NB_MORTS*0.5 - NB_BLESSES_GRAVES*0.25 - NB_BLESSES_LEGERS*0.1
+        weight = GRAVITY + NB_MORTS*0.5 + NB_BLESSES_GRAVES*0.25 + NB_BLESSES_LEGERS*0.1
         
-        if weight / 10 >= -1:
-            return -1
-    
-        return (weight / 10)
+        if weight > 5:
+            return 5
+        else:
+            return weight
 
 
     df['COST'] = df.apply(compute_cost, axis=1)
@@ -58,9 +56,14 @@ def preprocess_rue_pieton():
 
     def compute_cost(row):
         if row['VOIE_CYCLABLE'] == 'Oui':
-            return 0.8
+            return 1
         else:
-            return 0.6
+            return 1
         
     df['COST'] = df.apply(compute_cost, axis=1)
+
     return df
+
+
+def preprocess_feux_pieton():
+    pass
