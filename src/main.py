@@ -76,22 +76,46 @@ app.layout = dbc.Container([
 
     dbc.Row([
         dbc.Col([
-            html.Label("")
-        ], md=3),
 
+        ], md=1),
         dbc.Col([
-            html.Label("Current Location Address", style={'color': '#db523e'}),
-            dcc.Input(id='current-address-input', type='text', placeholder="Enter Address", value="1450 Rue Guy Montreal", className="mb-2"),
+            dbc.Row([
+                    html.Label("Current Location Address", style={'color': '#db523e'})
+            ]),
+            dbc.Row([
+                    dcc.Input(id='current-address-input', type='text', placeholder="Enter Address", value="1450 Rue Guy Montreal", className="mb-2")
+            ])
         ], md=3, style={'text-align': 'center'}),
 
         dbc.Col([
-            html.Label("Destination Address", style={'color': '#db523e'}),
-            dcc.Input(id='dest-address-input', type='text', placeholder="Enter Address", value="1450 Rue Guy Montreal", className="mb-2"),
-        ], md=3, style={'text-align': 'center'}),
-        
+
+        ], md=1),
+
         dbc.Col([
-            html.Label("")
-        ], md=3)
+            dbc.Row([
+                    html.Label("Destination Address", style={'color': '#db523e'})
+            ]),
+            dbc.Row([
+                    dcc.Input(id='dest-address-input', type='text', placeholder="Enter Address", value="1450 Rue Guy Montreal", className="mb-2")
+            ])
+        ], md=3, style={'text-align': 'center'}),
+
+        dbc.Col([
+
+        ], md=1),
+
+        dbc.Col([
+            html.Label("Confidence Level", style={'color': '#db523e'}),
+            dcc.Slider(
+                id='confidence-level-slider',
+                min=1,
+                max=10,
+                step=1,
+                marks={i: str(i) for i in range(1, 11)},
+                value=5,  # Set a default value if needed
+                className="mb-2"
+            ),
+        ], md=3, style={'text-align': 'center'})
     ]),
 
 
@@ -127,14 +151,19 @@ app.layout = dbc.Container([
     html.Div(id='hexagon-stats')
 ])
 
+def normalize_value(original_value, min_original_range, max_original_range, min_new_range, max_new_range):
+    normalized_value = ((original_value - min_original_range) / (max_original_range - min_original_range)) * (max_new_range - min_new_range) + min_new_range
+    return normalized_value
+
 # Callback to update the map based on address inputs
 @app.callback(
     Output('hexagon-map', 'figure'),
     [Input('submit-addresses', 'n_clicks')],  # Button for submitting addresses
     [State('current-address-input', 'value'),  # State of current address input
-     State('dest-address-input', 'value')]     # State of destination address input
+     State('dest-address-input', 'value')],     # State of destination address input
+     [State('confidence-level-slider', 'value')]
 )
-def update_map(submit_clicks, current_address, dest_address):
+def update_map(submit_clicks, current_address, dest_address, confidence_level):
     current_lat, current_lon = 45.5017, -73.5673  # Default to Montreal coordinates
     dest_lat, dest_lon = 45.5017, -73.5673        # Default to Montreal coordinates
 
@@ -194,6 +223,15 @@ def update_map(submit_clicks, current_address, dest_address):
             if neighbor in G.nodes:
                 # Define the cost of the edge (you can adjust this logic)
                 edge_cost = (G.nodes[hex_id]['cost'] + G.nodes[neighbor]['cost']) / 2
+                min_original_range = 1
+                max_original_range = 10
+                min_new_range = 1
+                max_new_range = (11-confidence_level)
+
+                edge_cost = normalize_value(edge_cost, min_original_range, max_original_range, min_new_range, max_new_range)
+                if edge_cost < 0:
+                    edge_cost = 0
+
                 G.add_edge(hex_id, neighbor, weight=edge_cost)
 
     # Define your start and end hexagons based on points A and B
