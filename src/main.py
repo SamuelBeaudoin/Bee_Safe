@@ -10,7 +10,7 @@ import dash_bootstrap_components as dbc
 import networkx as nx
 from opencage.geocoder import OpenCageGeocode
 
-app = dash.Dash(__name__, external_stylesheets=[dbc.themes.BOOTSTRAP])
+app = dash.Dash(__name__, external_stylesheets=[dbc.themes.BOOTSTRAP, '/assets/styles.css'])
 
 # Set your Mapbox access token here
 mapbox_access_token = 'pk.eyJ1IjoidHV0cmUiLCJhIjoiY2xybWRicGhyMHBiaDJrb3I3ZXFocTA2dSJ9.rBItPyF-B0-YPcl9W7KKHg'
@@ -65,25 +65,48 @@ geojson_hexagons = {
 
 # Layout of the Dash app
 app.layout = dbc.Container([
-    html.H1("Street Safety", className="mt-4 mb-4"),
+    html.H1([html.Strong("Street Safety")], className="mt-4 mb-4", style={'color':'#8A2BE2'}),
+
+
 
     dbc.Row([
         dbc.Col([
+            html.Label("")
+        ], md=3),
+
+        dbc.Col([
             html.Label("Current Location Address"),
             dcc.Input(id='current-address-input', type='text', placeholder="Enter Address", value="1450 Rue Guy Montreal", className="mb-2"),
-        ], md=6),
+        ], md=3, style={'text-align': 'center'}),
 
         dbc.Col([
             html.Label("Destination Address"),
             dcc.Input(id='dest-address-input', type='text', placeholder="Enter Address", value="1450 Rue Guy Montreal", className="mb-2"),
-        ], md=6),
+        ], md=3, style={'text-align': 'center'}),
+        
+        dbc.Col([
+            html.Label("")
+        ], md=3)
+    ]),
+
+
+    dbc.Row([
+        dbc.Col([
+            html.Label("")
+        ], md=4),
+        dbc.Col(
+            dbc.Button("Submit Addresses", id='submit-addresses', color="primary", className="mt-2", n_clicks=0),
+            width=4, md={'size': 4}, style={'text-align': 'center'}  # Center the button with offset
+        ),
+        dbc.Col([
+            html.Label("")
+        ], md=4)
     ]),
 
     dbc.Row([
-        dbc.Col(
-            dbc.Button("Submit Addresses", id='submit-addresses', color="primary", className="mt-2", n_clicks=0),
-            width=4, md={'size': 4, 'offset': 4}  # Center the button with offset
-        )
+        dbc.Col([
+            html.Label("")
+        ], md=4)
     ]),
 
     dcc.Loading(
@@ -239,8 +262,16 @@ def display_hexagon_stats(clickData, figure):
 
 
         return [
-            f"Average Cost: {cost} \n",
-            f"Points of interest: {len(associated_points)}",
+            dbc.Row([
+                dbc.Col([
+                    html.Label(f"Average Cost: {cost}")
+                ], md=6)
+            ]),
+            dbc.Row([
+                dbc.Col([
+                    html.Label(f"Points of interest: {len(associated_points)}")
+                ], md=6)
+            ]),
             dcc.Graph(figure=bar_plot)
         ]
 
