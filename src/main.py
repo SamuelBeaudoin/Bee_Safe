@@ -63,37 +63,25 @@ geojson_hexagons = {
     ]
 }
 
-isFetchingLatLong=False
-
 # Layout of the Dash app
 app.layout = dbc.Container([
     html.H1("Street Safety", className="mt-4 mb-4"),
 
     dbc.Row([
         dbc.Col([
-            html.Label("Current Location Address:   "),
+            html.Label("Current Location Address"),
             dcc.Input(id='current-address-input', type='text', placeholder="Enter Address", value = "1450 Rue Guy Montreal", className="mb-2"),
         ], md=6),
 
         dbc.Col([
-            html.Label("Destination Address:   "),
+            html.Label("Destination Address"),
             dcc.Input(id='dest-address-input', type='text', placeholder="Enter Address", value = "1450 Rue Guy Montreal", className="mb-2"),
         ], md=6)
     ]),
 
-    dcc.Loading(
-        id="loading-geocode",
-        type="default",
-        children=[
-            html.Div([
-                dcc.Graph(id='hexagon-map', clickData=None),
-            ]),
-        ]
-    ),
-       
+    dcc.Graph(id='hexagon-map', clickData=None),
     html.Div(id='hexagon-stats')
 ])
-
 
 # Callback to update the map based on address inputs
 @app.callback(
@@ -102,20 +90,14 @@ app.layout = dbc.Container([
      Input('dest-address-input', 'value')]
 )
 def update_map(current_address, dest_address):
-    global isFetchingLatLong
     if current_address and dest_address:
         # Geocode the addresses to coordinates
-        isFetchingLatLong=True
-
         current_location = geocoder.geocode(current_address)
         dest_location = geocoder.geocode(dest_address)
 
         if current_location and dest_location:
             current_lat, current_lon = current_location[0]['geometry']['lat'], current_location[0]['geometry']['lng']
             dest_lat, dest_lon = dest_location[0]['geometry']['lat'], dest_location[0]['geometry']['lng']
-        
-        isFetchingLatLong=False
-
 
     # Update the map based on user input with the custom color scale
     fig = px.choropleth_mapbox(hexagon_average_cost, geojson=geojson_hexagons, locations='hex_id', color='average_cost',
@@ -216,27 +198,10 @@ def update_map(current_address, dest_address):
 )
 def display_hexagon_stats(clickData, figure):
     if clickData:
-        
         hex_id = clickData['points'][0]['location']
-        associated_points = data[data['hex_id'] == hex_id]
         # Find the cost associated with the clicked hexagon
         cost = hexagon_average_cost[hexagon_average_cost['hex_id'] == hex_id]['average_cost'].iloc[0]
-
-        # Create a bar plot by Type for the associated points
-        bar_plot = px.bar(
-            associated_points, 
-            x='Type', 
-            title=f'Information About Hexagone',
-            labels={'Type': 'Type', 'count': 'Count'}, color='Type')
-        
-        
-        return [
-            f"Average Cost: {cost} \n",
-            f"Points of interest: {len(associated_points)}",
-            dcc.Graph(figure=bar_plot)
-        ]
-    
-
+        return f" Average Cost: {cost}"
     return "Click on a hexagon to see its stats."
 
 if __name__ == '__main__':
