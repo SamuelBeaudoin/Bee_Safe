@@ -235,14 +235,6 @@ def update_map(submit_clicks, current_address, dest_address):
     path_lon = [lon for lat, lon in path_centers]
     path_lat = [lat for lat, lon in path_centers]
 
-    # Insert the start coordinates at the beginning of the lists
-    path_lon[0] = current_lon
-    path_lat[0] = current_lat
-
-    # Append the end coordinates at the end of the lists
-    path_lon[path_lon.__len__() - 1] = dest_lon
-    path_lat[path_lat.__len__() - 1] = dest_lat
-
     fig.add_trace(go.Scattermapbox(
         mode = "lines",
         lon = path_lon,
