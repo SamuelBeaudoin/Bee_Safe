@@ -12,16 +12,10 @@ from opencage.geocoder import OpenCageGeocode
 
 app = dash.Dash(__name__, external_stylesheets=[dbc.themes.BOOTSTRAP])
 
-# Set your Mapbox access token here
-mapbox_access_token = 'pk.eyJ1IjoidHV0cmUiLCJhIjoiY2xybWRicGhyMHBiaDJrb3I3ZXFocTA2dSJ9.rBItPyF-B0-YPcl9W7KKHg'
-
-opencage_api_key = 'd0d560b267c94cdabd9ffb677e28ce29'
-geocoder = OpenCageGeocode(opencage_api_key)
-
-# Load your data
-data = data_merging.merge_data()
-
-custom_color_scale = [
+# Variables
+MAPBOX_ACCESS_TOKEN = 'pk.eyJ1IjoidHV0cmUiLCJhIjoiY2xybWRicGhyMHBiaDJrb3I3ZXFocTA2dSJ9.rBItPyF-B0-YPcl9W7KKHg'
+OPENCAGE_API_KEY = 'd0d560b267c94cdabd9ffb677e28ce29'
+CUSTOM_COLOR_SCALE = [
     [0.0, 'rgb(0, 255, 0)'],    # Green at 0, corresponding to cost 1
     [0.15, 'rgb(255, 255, 0)'],
     [0.35, 'rgb(255, 150, 0)'], # Yellow at 0.25, around cost 2
@@ -31,6 +25,12 @@ custom_color_scale = [
     [0.8, 'rgb(165,42,42)'],     # Dark red at 1, corresponding to cost 10
     [1.0, 'rgb(0, 0, 0)']
 ]
+DEFAULT_ADDRESS = "1450 Rue Guy Montreal"
+DEFAULT_COORDINATES = (45.5017, -73.5673)  # Montreal coordinates
+
+# Load your data
+data = data_merging.merge_data()
+geocoder = OpenCageGeocode(OPENCAGE_API_KEY)
   
 # Function to convert coordinates to hexagons
 def lat_lng_to_hexagon(latitude, longitude, resolution=10):
@@ -42,8 +42,6 @@ data['hex_id'] = data.apply(lambda row: lat_lng_to_hexagon(row['Latitude'], row[
 # Calculate the average cost in each hexagon
 hexagon_average_cost = data.groupby('hex_id')['COST'].mean().reset_index()
 hexagon_average_cost.columns = ['hex_id', 'average_cost']
-
-input_values = {}
 
 # Convert hexagon IDs to GeoJSON polygons
 def hexagon_to_geojson(hex_id):
@@ -70,12 +68,12 @@ app.layout = dbc.Container([
     dbc.Row([
         dbc.Col([
             html.Label("Current Location Address"),
-            dcc.Input(id='current-address-input', type='text', placeholder="Enter Address", value="1450 Rue Guy Montreal", className="mb-2"),
+            dcc.Input(id='current-address-input', type='text', placeholder="Enter Address", value=DEFAULT_ADDRESS, className="mb-2"),
         ], md=6),
 
         dbc.Col([
             html.Label("Destination Address"),
-            dcc.Input(id='dest-address-input', type='text', placeholder="Enter Address", value="1450 Rue Guy Montreal", className="mb-2"),
+            dcc.Input(id='dest-address-input', type='text', placeholder="Enter Address", value=DEFAULT_ADDRESS, className="mb-2"),
         ], md=6),
     ]),
 
@@ -107,8 +105,8 @@ app.layout = dbc.Container([
      State('dest-address-input', 'value')]     # State of destination address input
 )
 def update_map(submit_clicks, current_address, dest_address):
-    current_lat, current_lon = 45.5017, -73.5673  # Default to Montreal coordinates
-    dest_lat, dest_lon = 45.5017, -73.5673        # Default to Montreal coordinates
+    current_lat, current_lon = DEFAULT_COORDINATES  # Default to Montreal coordinates
+    dest_lat, dest_lon = DEFAULT_COORDINATES       # Default to Montreal coordinates
 
     if submit_clicks:
         # Process the current address
@@ -125,7 +123,7 @@ def update_map(submit_clicks, current_address, dest_address):
                         
     # Update the map based on user input with the custom color scale
     fig = px.choropleth_mapbox(hexagon_average_cost, geojson=geojson_hexagons, locations='hex_id', color='average_cost',
-                                color_continuous_scale=custom_color_scale, mapbox_style="mapbox://styles/mapbox/streets-v11",
+                                color_continuous_scale=CUSTOM_COLOR_SCALE, mapbox_style="mapbox://styles/mapbox/streets-v12",
                                 zoom=10, center={"lat": current_lat, "lon": current_lon},
                                 opacity=0.5, hover_data={'hex_id': False, 'average_cost': False})
 
@@ -144,7 +142,7 @@ def update_map(submit_clicks, current_address, dest_address):
     ))
 
      # Set the Mapbox access token for the figure
-    fig.update_layout(mapbox_accesstoken=mapbox_access_token)
+    fig.update_layout(mapbox_accesstoken=MAPBOX_ACCESS_TOKEN)
     fig.update_layout(margin={"r":0,"t":0,"l":0,"b":0})
 
     # Create a graph
