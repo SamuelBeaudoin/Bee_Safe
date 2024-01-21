@@ -7,15 +7,16 @@ import plotly.graph_objects as go
 import h3
 import data_merging
 import dash_bootstrap_components as dbc
-import folium
-import geojson
 import networkx as nx
-import plotly.colors
+from opencage.geocoder import OpenCageGeocode
 
 app = dash.Dash(__name__, external_stylesheets=[dbc.themes.BOOTSTRAP])
 
 # Set your Mapbox access token here
 mapbox_access_token = 'pk.eyJ1IjoidHV0cmUiLCJhIjoiY2xybWRicGhyMHBiaDJrb3I3ZXFocTA2dSJ9.rBItPyF-B0-YPcl9W7KKHg'
+
+opencage_api_key = 'd0d560b267c94cdabd9ffb677e28ce29'
+geocoder = OpenCageGeocode(opencage_api_key)
 
 # Load your data
 data = data_merging.merge_data()
@@ -68,17 +69,16 @@ app.layout = dbc.Container([
 
     dbc.Row([
         dbc.Col([
-            html.Label("Current Location"),
-            dcc.Input(id='current-lat-input', type='number', placeholder="Enter Latitude", value=45.4957494, className="mb-2"),
-            dcc.Input(id='current-lon-input', type='number', placeholder="Enter Longitude", value=-73.5793263, className="mb-4")
+            html.Label("Current Location Address"),
+            dcc.Input(id='current-address-input', type='text', placeholder="Enter Address", value = "1450 Rue Guy Montreal", className="mb-2"),
         ], md=6),
 
         dbc.Col([
-            html.Label("Destination"),
-            dcc.Input(id='dest-lat-input', type='number', placeholder="Enter Latitude", value=45.4957494, className="mb-2"),
-            dcc.Input(id='dest-lon-input', type='number', placeholder="Enter Longitude", value=-73.5793263, className="mb-4")
+            html.Label("Destination Address"),
+            dcc.Input(id='dest-address-input', type='text', placeholder="Enter Address", value = "1450 Rue Guy Montreal", className="mb-2"),
         ], md=6)
     ]),
+
     dcc.Graph(id='hexagon-map', clickData=None),
     html.Div(id='hexagon-stats'),
     dbc.Modal(
@@ -93,19 +93,21 @@ app.layout = dbc.Container([
     ),
 ])
 
-# Callback to update the map based on user input
+# Callback to update the map based on address inputs
 @app.callback(
     Output('hexagon-map', 'figure'),
-    [Input('current-lat-input', 'value'),
-     Input('current-lon-input', 'value'),
-     Input('dest-lat-input', 'value'),
-     Input('dest-lon-input', 'value')]
+    [Input('current-address-input', 'value'),
+     Input('dest-address-input', 'value')]
 )
-def update_map(current_lat, current_lon, dest_lat, dest_lon):
-    input_values['current_lat'] = current_lat
-    input_values['current_lon'] = current_lon
-    input_values['dest_lat'] = dest_lat
-    input_values['dest_lon'] = dest_lon
+def update_map(current_address, dest_address):
+    if current_address and dest_address:
+        # Geocode the addresses to coordinates
+        current_location = geocoder.geocode(current_address)
+        dest_location = geocoder.geocode(dest_address)
+
+        if current_location and dest_location:
+            current_lat, current_lon = current_location[0]['geometry']['lat'], current_location[0]['geometry']['lng']
+            dest_lat, dest_lon = dest_location[0]['geometry']['lat'], dest_location[0]['geometry']['lng']
 
     # Update the map based on user input with the custom color scale
     fig = px.choropleth_mapbox(hexagon_average_cost, geojson=geojson_hexagons, locations='hex_id', color='average_cost',
