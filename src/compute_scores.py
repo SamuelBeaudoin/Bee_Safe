@@ -31,7 +31,7 @@ def proprocess_car_crash_data():
         "Dommages matériels inférieurs au seuil de rapportage": 1,
 	    "Dommages matériels seulement" : 1,
 	    "Léger" : 2,
-	    "Grave": 5,
+	    "Grave": 3.5,
 	    "Mortel": 5
     }
 
@@ -59,7 +59,7 @@ def preprocess_rue_pieton():
         if row['VOIE_CYCLABLE'] == 'Oui':
             return 1
         else:
-            return 1
+            return 0
         
     df['COST'] = df.apply(compute_cost, axis=1)
 
