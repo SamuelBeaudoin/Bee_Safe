@@ -77,6 +77,17 @@ app.layout = dbc.Container([
             dcc.Input(id='dest-lon-input', type='number', placeholder="Enter Longitude", value=-73.5793263, className="mb-4")
         ], md=6)
     ]),
+    # dbc.Row([
+    #     dbc.Col([
+    #         html.Label("Current Location"),
+    #         dcc.Input(id='current-lat-input', type='text', placeholder="Enter Address", value="", className="mb-2")
+    #     ], md=6),
+
+    #     dbc.Col([
+    #         html.Label("Destination"),
+    #         dcc.Input(id='dest-lat-input', type='text', placeholder="Enter Address", value="", className="mb-2")
+    #     ], md=6)
+    # ]),
     dcc.Graph(id='hexagon-map', clickData=None),
     html.Div(id='hexagon-stats')
 ])
@@ -195,6 +206,7 @@ def update_map(current_lat, current_lon, dest_lat, dest_lon):
     [Input('hexagon-map', 'clickData')],
     [State('hexagon-map', 'figure')]
 )
+
 def display_hexagon_stats(clickData, figure):
     if clickData:
         hex_id = clickData['points'][0]['location']
