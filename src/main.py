@@ -218,9 +218,23 @@ def display_hexagon_stats(clickData, figure):
     if clickData:
         
         hex_id = clickData['points'][0]['location']
+        associated_points = data[data['hex_id'] == hex_id]
         # Find the cost associated with the clicked hexagon
         cost = hexagon_average_cost[hexagon_average_cost['hex_id'] == hex_id]['average_cost'].iloc[0]
-        return f" Average Cost: {cost}"
+
+        # Create a bar plot by Type for the associated points
+        bar_plot = px.bar(
+            associated_points, 
+            x='Type', 
+            title=f'Information About Hexagone',
+            labels={'Type': 'Type', 'count': 'Count'}, color='Type')
+        
+        
+        return [
+            f"Average Cost: {cost} \n",
+            f"Points of interest: {len(associated_points)}",
+            dcc.Graph(figure=bar_plot)
+        ]
     
 
     return "Click on a hexagon to see its stats."
