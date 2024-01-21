@@ -58,7 +58,7 @@ def preprocess_rue_pieton():
         if row['VOIE_CYCLABLE'] == 'Oui':
             return 1
         else:
-            return 1
+            return 2
         
     df['COST'] = df.apply(compute_cost, axis=1)
 

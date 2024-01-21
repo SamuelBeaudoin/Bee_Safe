@@ -288,19 +288,19 @@ def display_hexagon_stats(clickData, figure):
     if clickData:
 
         hex_id = clickData['points'][0]['location']
+        associated_points = data[data['hex_id'] == hex_id]
         # Find the cost associated with the clicked hexagon
         cost = hexagon_average_cost[hexagon_average_cost['hex_id'] == hex_id]['average_cost'].iloc[0]
 
-        general_data_plot = create_barplot(hex_id)
-        # crime_plot=  create_crime_plot(hex_id)
+        # Create a bar plot by Type for the associated points
+        bar_plot = px.bar(
+            associated_points, 
+            x='Type', 
+            title=f'Data Points - Hexagon {hex_id}',
+            labels={'Type': 'Type', 'count': 'Count'}, color='Type')
+
 
         return [
-<<<<<<< HEAD
-            f"Average Risk Factor: {cost} \n",
-            f"Points of interest: {len(data[data['hex_id'] == hex_id])}",
-            general_data_plot,
-            # crime_plot
-=======
             dbc.Row([
                 dbc.Col([
                     html.Label(f"Average Cost: {cost}", style={'color': '#34c3d7'})
@@ -312,8 +312,10 @@ def display_hexagon_stats(clickData, figure):
                 ], md=6)
             ]),
             dcc.Graph(figure=bar_plot)
->>>>>>> sma-branch
         ]
+
+
+    return "Click on a hexagon to see its stats."
 
 
     return "Click on a hexagon to see its stats."
