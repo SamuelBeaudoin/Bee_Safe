@@ -251,8 +251,8 @@ def update_map(submit_clicks, current_address, dest_address, confidence_level, r
                 G.add_edge(hex_id, neighbor, weight=edge_cost)
 
     # Define your start and end hexagons based on points A and B
-    start_hex = lat_lng_to_hexagon(current_lat, current_lon, resolution_level)  # lat_A and lon_A for point A
-    end_hex = lat_lng_to_hexagon(dest_lat, dest_lon, resolution_level)    # lat_B and lon_B for point B
+    start_hex = lat_lng_to_hexagon(current_lat, current_lon)  # lat_A and lon_A for point A
+    end_hex = lat_lng_to_hexagon(dest_lat, dest_lon)    # lat_B and lon_B for point B
 
     # Find the shortest path
     path = nx.shortest_path(G, source=start_hex, target=end_hex, weight='weight', method='dijkstra')
