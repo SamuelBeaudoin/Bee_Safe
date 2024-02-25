@@ -11,6 +11,7 @@ Bee Safe is a web application designed to enhance safety awareness and route pla
   <img width="600" alt="confidence 1" src="https://github.com/SamuelBeaudoin/Bee_Safe/assets/73494088/640bbe80-3f47-4ef0-8aa5-b9c32fb46816">
 
   Confidence Level 10 (most efficient path):
+  
   <img width="600" alt="Confidence 10" src="https://github.com/SamuelBeaudoin/Bee_Safe/assets/73494088/684ae108-a879-46b8-8162-f5f8a4239eb0">
 
 
