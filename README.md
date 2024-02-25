@@ -7,7 +7,9 @@ Bee Safe is a web application designed to enhance safety awareness and route pla
 - **Hexagon Visualization**: View safety areas overlaid on a map using hexagonal visualization.
 - **Route Planning**: Plan routes by entering current location and destination, with options to prioritize safety or efficiency.
 - **Confidence Level Adjustment**: Tailor route suggestions by adjusting confidence level scales, giving users control over safety-efficiency trade-offs.
+  
   Confidence Level 1 (safest path):
+  
   <img width="600" alt="confidence 1" src="https://github.com/SamuelBeaudoin/Bee_Safe/assets/73494088/640bbe80-3f47-4ef0-8aa5-b9c32fb46816">
 
   Confidence Level 10 (most efficient path):
