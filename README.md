@@ -8,10 +8,10 @@ Bee Safe is a web application designed to enhance safety awareness and route pla
 - **Route Planning**: Plan routes by entering current location and destination, with options to prioritize safety or efficiency.
 - **Confidence Level Adjustment**: Tailor route suggestions by adjusting confidence level scales, giving users control over safety-efficiency trade-offs.
   Confidence Level 1 (safest path):
-  <img width="1070" alt="confidence 1" src="https://github.com/SamuelBeaudoin/Bee_Safe/assets/73494088/640bbe80-3f47-4ef0-8aa5-b9c32fb46816">
+  <img width="600" alt="confidence 1" src="https://github.com/SamuelBeaudoin/Bee_Safe/assets/73494088/640bbe80-3f47-4ef0-8aa5-b9c32fb46816">
 
   Confidence Level 10 (most efficient path):
-  <img width="1070" alt="Confidence 10" src="https://github.com/SamuelBeaudoin/Bee_Safe/assets/73494088/684ae108-a879-46b8-8162-f5f8a4239eb0">
+  <img width="600" alt="Confidence 10" src="https://github.com/SamuelBeaudoin/Bee_Safe/assets/73494088/684ae108-a879-46b8-8162-f5f8a4239eb0">
 
 
 - **Zone Information**: Click on safety zones to access detailed information on safety factors such as car accidents, crimes, traffic lights, and more.
