@@ -19,6 +19,11 @@ Bee Safe is a web application designed to enhance safety awareness and route pla
 
 - **Zone Information**: Click on safety zones to access detailed information on safety factors such as car accidents, crimes, traffic lights, and more.
 
+  A visualization of the data contained in a yellow hexagon safety zone:
+
+  <img width="600" alt="data visualization" src="https://github.com/SamuelBeaudoin/Bee_Safe/assets/73494088/5fc9f53b-d7d7-4fbf-9e72-730cb0dd7875">
+
+
 ## How It Works
 
 Bee Safe integrates data on safety metrics to generate actionable insights for users navigating Montreal's streets. By analyzing various factors contributing to safety, including historical data on accidents and crimes, the application offers a comprehensive view of potential risks along routes.
